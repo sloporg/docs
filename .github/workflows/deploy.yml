@@ -1,0 +1,46 @@
+name: deploy docs
+
+on:
+  push:
+    branches:
+      - v0.0.1-dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: setup mdbook
+        uses: peaceiris/actions-mdbook@v1
+        with:
+          mdbook-version: 'latest'
+
+      - name: build
+        run: |
+          # Set base url for correct routing in subdirectory
+          export MDBOOK_OUTPUT__HTML__SITE_URL="/v/v0.0.1-dev/"
+          mdbook build
+          touch book/.nojekyll
+
+      - name: deploy docs
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./book
+          publish_branch: gh-pages
+          destination_dir: v/v0.0.1-dev
+          keep_files: true
+
+      - name: deploy root redirect
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./root_redirect
+          publish_branch: gh-pages
+          destination_dir: .
+          keep_files: true

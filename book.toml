@@ -1,0 +1,10 @@
+[book]
+title = "slop docs"
+authors = ["sloporg"]
+language = "en"
+src = "src"
+
+[output.html]
+additional-css = ["theme/custom.css"]
+no-section-label = true
+git-repository-url = "https://github.com/sloporg/docs"

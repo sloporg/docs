@@ -31,7 +31,7 @@ slop doesn't give you choices. slop tells you how it is.
 - **one file structure** - arch, const, fn, main. always this order. compiler enforces.
 
 ### minimal by design
-- **3 types total** - u64, bool, str. that's it for v0.0.1.
+- **core types** - u64, bool, str form the foundation in v0.0.1.
 - **stack-only memory** - no heap. no gc. predictable and fast.
 - **explicit everything** - function signatures need types. no guessing.
 

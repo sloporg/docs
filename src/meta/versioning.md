@@ -6,7 +6,7 @@
 
 ## the philosophy
 
-we don't release broken shit. each version is **dense**.
+we prioritize quality over release frequency. each version is **dense**.
 
 **dense means:**
 - complete features

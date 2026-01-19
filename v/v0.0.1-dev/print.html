@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-0fe0ba9d.js";
+            window.path_to_searchindex_js = "searchindex-e9b0a8fe.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-66c34e75.js"></script>
@@ -322,14 +322,14 @@ user_name = "anon"               # underscore
 <h2 id="basic-types"><a class="header" href="#basic-types">basic types</a></h2>
 <h3 id="og-types"><a class="header" href="#og-types">og types</a></h3>
 <pre><code class="language-slop">count u64 = 67                   # unsigned integer
-active bool = true               # boolean
+active bool = yea                # boolean
 name str = "anon"                # string literal
 </code></pre>
 <h3 id="type-inference"><a class="header" href="#type-inference">type inference</a></h3>
 <p>types are inferred from literals:</p>
 <pre><code class="language-slop">name        = "anon"             # inferred: str
 count       = 67                 # inferred: u64
-active      = true               # inferred: bool
+active      = yea                # inferred: bool
 
 name str    = "anon"             # explicit type annotation
 </code></pre>
@@ -407,8 +407,8 @@ fn main()
 <pre><code class="language-slop">"no bugs in prod"                # string literal
 </code></pre>
 <h3 id="booleans"><a class="header" href="#booleans">booleans</a></h3>
-<pre><code class="language-slop">true
-false
+<pre><code class="language-slop">yea
+nay
 </code></pre>
 <hr>
 <h2 id="operators"><a class="header" href="#operators">operators</a></h2>
@@ -462,7 +462,7 @@ else
 <li><code>arch</code>, <code>const</code></li>
 <li><code>fn</code>, <code>ret</code></li>
 <li><code>if</code>, <code>else</code>, <code>while</code></li>
-<li><code>true</code>, <code>false</code></li>
+<li><code>yea</code>, <code>nay</code></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="types"><a class="header" href="#types">types</a></h1>
@@ -476,9 +476,9 @@ y = 100                          # inferred as u64
 </code></pre>
 <p><strong>operators:</strong> <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code></p>
 <h3 id="bool"><a class="header" href="#bool">bool</a></h3>
-<p>boolean values <code>true</code> or <code>false</code>.</p>
-<pre><code class="language-slop">active bool = true
-flag = false
+<p>boolean values <code>yea</code> or <code>nay</code>.</p>
+<pre><code class="language-slop">active bool = yea
+flag = nay
 </code></pre>
 <p><strong>operators:</strong> <code>&amp;&amp;</code>, <code>||</code>, <code>!</code></p>
 <h3 id="str"><a class="header" href="#str">str</a></h3>
@@ -489,7 +489,7 @@ flag = false
 <h2 id="type-inference-1"><a class="header" href="#type-inference-1">type inference</a></h2>
 <p>compiler infers types for variable assignments:</p>
 <pre><code class="language-slop">a = 10                           # u64
-b = true                         # bool
+b = yea                          # bool
 c = "txt"                        # str
 </code></pre>
 <p>explicit typing is required for function arguments and return types.</p>

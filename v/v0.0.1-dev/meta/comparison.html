@@ -36,7 +36,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-0b3658b5.js";
+            window.path_to_searchindex_js = "../searchindex-199f79f2.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-a5cfa9c5.js"></script>
@@ -179,20 +179,20 @@
 <p><strong>slop vs the world.</strong></p>
 <hr>
 <h2 id="slop-vs-rust"><a class="header" href="#slop-vs-rust">slop vs rust</a></h2>
-<p><strong>rust:</strong> borrow checker fights you. lifetime annotations everywhere. compile times allow for coffee breaks.
-<strong>slop:</strong> stack only. everything is copied. fast as fuck. no thinking required.</p>
+<p><strong>rust:</strong> complex borrow checker. lifetime annotations everywhere. long compile times.
+<strong>slop:</strong> stack focused. copy semantics by default. fast compilation. simpler mental model.</p>
 <hr>
 <h2 id="slop-vs-go"><a class="header" href="#slop-vs-go">slop vs go</a></h2>
-<p><strong>go:</strong> <code>if err != nil</code>. garbage collector pauses.
-<strong>slop:</strong> no gc. predictable performance. error handling? not in v0.0.1 (we crash).</p>
+<p><strong>go:</strong> explicit error checks everywhere. garbage collector pauses.
+<strong>slop:</strong> no gc pauses. predictable performance. panic-on-error (current epoch).</p>
 <hr>
 <h2 id="slop-vs-python"><a class="header" href="#slop-vs-python">slop vs python</a></h2>
-<p><strong>python:</strong> <code>camelCase</code> or <code>snake_case</code>? tabs or spaces? slow as molasses.
-<strong>slop:</strong> lowercase only. 2 spaces only. compiler yells at you. fast execution.</p>
+<p><strong>python:</strong> inconsistent casing. mixed indentation. slow execution.
+<strong>slop:</strong> strict lowercase. strict indentation. high performance.</p>
 <hr>
 <h2 id="slop-vs-c"><a class="header" href="#slop-vs-c">slop vs c</a></h2>
 <p><strong>c:</strong> segfaults. buffer overflows. undefined behavior.
-<strong>slop:</strong> defined behavior. strict structure.</p>
+<strong>slop:</strong> defined behavior. strict structure. safer defaults.</p>
 <hr>
 <h2 id="summary"><a class="header" href="#summary">summary</a></h2>
 <div class="table-wrapper">
@@ -205,7 +205,7 @@
 <tr><td><strong>speed</strong></td><td>fast</td><td>fast</td><td>fast</td><td>slow</td></tr>
 <tr><td><strong>casing</strong></td><td>strict</td><td>mixed</td><td>mixed</td><td>mixed</td></tr>
 <tr><td><strong>indent</strong></td><td>strict</td><td>mixed</td><td>mixed</td><td>strict</td></tr>
-<tr><td><strong>vibes</strong></td><td>immaculate</td><td>complex</td><td>pragmatic</td><td>chaotic</td></tr>
+<tr><td><strong>vibes</strong></td><td>disciplined</td><td>complex</td><td>pragmatic</td><td>flexible</td></tr>
 </tbody>
 </table>
 </div>

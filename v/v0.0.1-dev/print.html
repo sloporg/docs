@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-0b3658b5.js";
+            window.path_to_searchindex_js = "searchindex-199f79f2.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-a5cfa9c5.js"></script>
@@ -366,10 +366,10 @@ print res                        # output: 8
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="syntax"><a class="header" href="#syntax">syntax</a></h1>
-<p><strong>learn the rules or get out.</strong></p>
+<p><strong>learn the rules.</strong></p>
 <hr>
 <h2 id="the-law"><a class="header" href="#the-law">the law</a></h2>
-<p>compiler enforces this order. deviation is treason.</p>
+<p>compiler enforces this order. consistency is mandatory.</p>
 <ul>
 <li><strong>header:</strong> <code>arch &lt;system&gt; &lt;version&gt;</code></li>
 <li><strong>constants:</strong> <code>const name type = value</code></li>
@@ -391,7 +391,7 @@ fn main()
 <hr>
 <h2 id="indentation"><a class="header" href="#indentation">indentation</a></h2>
 <p><strong>2 spaces. strict.</strong>
-tabs? error. 4 spaces? error. 3 spaces? psychopath.</p>
+tabs or incorrect spacing will result in compiler errors.</p>
 <hr>
 <h2 id="comments"><a class="header" href="#comments">comments</a></h2>
 <pre><code class="language-slop"># one line only. keep it brief.
@@ -430,10 +430,10 @@ else
 <pre><code class="language-slop">fn add(a u64, b u64) u64
   a + b
 </code></pre>
-<p><strong>implicit return:</strong> last line returns. typing <code>ret</code> is extra work.</p>
+<p><strong>implicit return:</strong> last line returns. explicit <code>ret</code> is optional.</p>
 <hr>
 <h2 id="reserved-keywords"><a class="header" href="#reserved-keywords">reserved keywords</a></h2>
-<p>don’t name your variables these.</p>
+<p>reserved for language use.</p>
 <ul>
 <li><code>arch</code>, <code>const</code></li>
 <li><code>fn</code>, <code>ret</code></li>
@@ -442,14 +442,14 @@ else
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="types"><a class="header" href="#types">types</a></h1>
-<p><strong>3 types. that’s it. don’t ask for more.</strong></p>
+<p><strong>core types.</strong> minimal starting set.</p>
 <hr>
 <h2 id="og"><a class="header" href="#og">og</a></h2>
-<p>built-in types. simple as fuck.</p>
+<p>built-in types.</p>
 <h3 id="u64"><a class="header" href="#u64">u64</a></h3>
-<p>big unsigned integer. negative numbers are fake news.</p>
+<p>unsigned 64-bit integer. primary numeric type for v0.0.1.</p>
 <pre><code class="language-slop">x u64 = 67
-y = 100                          # compiler figured it out
+y = 100                          # inferred as u64
 </code></pre>
 <p><strong>math:</strong> <code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>%</code></p>
 <h3 id="bool"><a class="header" href="#bool">bool</a></h3>
@@ -459,17 +459,17 @@ flag = nay
 </code></pre>
 <p><strong>logic:</strong> <code>&amp;&amp;</code> <code>||</code> <code>!</code></p>
 <h3 id="str"><a class="header" href="#str">str</a></h3>
-<p>text. read-only. don’t try to change it.</p>
+<p>text. read-only slices.</p>
 <pre><code class="language-slop">msg str = "lowercase or die"
 </code></pre>
 <hr>
 <h2 id="type-inference-1"><a class="header" href="#type-inference-1">type inference</a></h2>
-<p>compiler is smarter than you.</p>
+<p>compiler infers types where unambiguous.</p>
 <pre><code class="language-slop">a = 10                           # u64
 b = yea                          # bool
 c = "txt"                        # str
 </code></pre>
-<p><strong>explicit types</strong> required for functions because we said so.</p>
+<p><strong>explicit types</strong> required for functions.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="functions-2"><a class="header" href="#functions-2">functions</a></h1>
 <p><strong>inputs go in. values come out.</strong></p>
@@ -514,59 +514,59 @@ print x
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="memory"><a class="header" href="#memory">memory</a></h1>
-<p><strong>stack only. heap is for people who like memory leaks.</strong></p>
+<p><strong>stack only. predictable and fast.</strong></p>
 <hr>
 <h2 id="no-garbage-collection"><a class="header" href="#no-garbage-collection">no garbage collection</a></h2>
-<p><strong>gc is a skill issue.</strong></p>
-<p>slop v0.0.1 uses strict stack allocation. if you need a heap, go use java and enjoy your 100ms pause.</p>
+<p><strong>gc pauses are unacceptable.</strong></p>
+<p>slop v0.0.1 uses strict stack allocation. applications that need consistent low-latency cannot afford stop-the-world pauses.</p>
 <p><strong>why?</strong></p>
 <ul>
-<li><strong>zero overhead</strong> - fast as fuck</li>
-<li><strong>deterministic</strong> - no “stop the world” surprises</li>
-<li><strong>simple</strong> - what you see is what you alloc</li>
+<li><strong>zero overhead</strong> - maximum throughput</li>
+<li><strong>deterministic</strong> - predictable execution time</li>
+<li><strong>simple</strong> - explicit resource lifecycle</li>
 </ul>
 <hr>
 <h2 id="memory-model"><a class="header" href="#memory-model">memory model</a></h2>
 <h3 id="stack-allocated"><a class="header" href="#stack-allocated">stack-allocated</a></h3>
-<p>everything lives on the stack. everything dies when the function ends.</p>
+<p>current types are stack-allocated. values persist only for the function scope.</p>
 <ul>
-<li><strong>u64</strong> - 8 bytes of pure number</li>
-<li><strong>bool</strong> - 1 byte of truth</li>
-<li><strong>str</strong> - pointer to read-only data (don’t worry about it)</li>
+<li><strong>u64</strong> - 8 bytes</li>
+<li><strong>bool</strong> - 1 byte</li>
+<li><strong>str</strong> - pointer to data segment</li>
 </ul>
 <p><strong>behavior:</strong></p>
 <ul>
 <li>enter function -&gt; alloc</li>
 <li>exit function -&gt; destroy</li>
-<li>forgot to free? impossible. compiler did it for you.</li>
+<li>automatic cleanup by compiler</li>
 </ul>
 <h3 id="copy-semantics"><a class="header" href="#copy-semantics">copy semantics</a></h3>
-<p>everything is copied. ownership is for v0.2.</p>
+<p>values are copied on assignment by default in this epoch.</p>
 <pre><code class="language-slop">a = 67
-b = a                            # b is a clone. a doesn't care.
-print a                          # still alive
-print b                          # also alive
+b = a                            # b is a copy. a remains valid.
+print a                          # valid
+print b                          # valid
 </code></pre>
 <hr>
 <h2 id="future"><a class="header" href="#future">future</a></h2>
-<p>heap allocation and manual memory management (<code>rekt</code>) are coming when we feel like it.</p>
+<p>heap allocation and manual memory management (<code>rekt</code>) are planned for future epochs.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="conventions"><a class="header" href="#conventions">conventions</a></h1>
-<p><strong>how to not get yelled at by the compiler.</strong></p>
+<p><strong>how to write valid slop.</strong></p>
 <hr>
 <h2 id="naming"><a class="header" href="#naming">naming</a></h2>
 <h3 id="variables"><a class="header" href="#variables">variables</a></h3>
-<p>lowercase only. snake_case if you must.</p>
+<p>lowercase only. snake_case permitted.</p>
 <ul>
-<li><code>count</code> (good)</li>
-<li><code>user_name</code> (fine)</li>
+<li><code>count</code> (preferred)</li>
+<li><code>user_name</code> (accepted)</li>
 <li><code>userName</code> (compiler error)</li>
-<li><code>UserName</code> (jail)</li>
+<li><code>UserName</code> (compiler error)</li>
 </ul>
 <h3 id="functions-3"><a class="header" href="#functions-3">functions</a></h3>
-<p>lowercase. avoid underscores if possible. keep it simple.</p>
+<p>lowercase. avoid underscores if possible.</p>
 <ul>
-<li><code>calculate</code> (good)</li>
+<li><code>calculate</code> (preferred)</li>
 <li><code>readfile</code> (better than <code>read_file</code>)</li>
 </ul>
 <h3 id="files"><a class="header" href="#files">files</a></h3>
@@ -584,15 +584,13 @@ print b                          # also alive
 <li>constants: <code>max_size</code> not <code>MAX_SIZE</code></li>
 </ul>
 <p><strong>why?</strong>
-agents hallucinate casing. <code>camelCase</code> vs <code>snake_case</code> is a waste of tokens. we removed the choice.</p>
+removes ambiguity and enforces consistency across the ecosystem.</p>
 <hr>
 <h2 id="formatting"><a class="header" href="#formatting">formatting</a></h2>
-<h3 id="indent-or-die"><a class="header" href="#indent-or-die">indent or die</a></h3>
+<h3 id="indent"><a class="header" href="#indent">indent</a></h3>
 <ul>
 <li><strong>2 spaces</strong> strictly.</li>
-<li>tabs? error.</li>
-<li>4 spaces? error.</li>
-<li>mixed? straight to jail.</li>
+<li>tabs or mixed spacing will trigger compiler errors.</li>
 </ul>
 <h3 id="spacing"><a class="header" href="#spacing">spacing</a></h3>
 <ul>
@@ -603,8 +601,8 @@ agents hallucinate casing. <code>camelCase</code> vs <code>snake_case</code> is 
 <h2 id="strings-1"><a class="header" href="#strings-1">strings</a></h2>
 <p><strong>double quotes only.</strong></p>
 <ul>
-<li><code>"hello"</code> (good)</li>
-<li><code>'hello'</code> (error)</li>
+<li><code>"hello"</code> (valid)</li>
+<li><code>'hello'</code> (invalid)</li>
 </ul>
 <hr>
 <h2 id="comments-1"><a class="header" href="#comments-1">comments</a></h2>
@@ -612,10 +610,10 @@ agents hallucinate casing. <code>camelCase</code> vs <code>snake_case</code> is 
 <ul>
 <li><code>#</code> starts a comment</li>
 <li>space after hash required: <code># good</code></li>
-<li>align them vertically or look sloppy</li>
+<li>vertical alignment recommended for block comments</li>
 </ul>
 <pre><code class="language-slop">x = 10                           # aligned
-y = 20                           # looks pro
+y = 20                           # clean
 </code></pre>
 <hr>
 <h2 id="og-1"><a class="header" href="#og-1">og</a></h2>
@@ -627,7 +625,7 @@ y = 20                           # looks pro
 </ul>
 <hr>
 <h2 id="file-structure"><a class="header" href="#file-structure">file structure</a></h2>
-<p><strong>order is enforced.</strong> don’t get creative.</p>
+<p><strong>order is enforced.</strong></p>
 <ul>
 <li><strong>header:</strong> <code>arch &lt;system&gt; &lt;version&gt;</code></li>
 <li><strong>constants:</strong> <code>const name type = value</code></li>
@@ -710,20 +708,20 @@ use at your own risk. if it breaks, that’s on you.</p>
 <p><strong>slop vs the world.</strong></p>
 <hr>
 <h2 id="slop-vs-rust"><a class="header" href="#slop-vs-rust">slop vs rust</a></h2>
-<p><strong>rust:</strong> borrow checker fights you. lifetime annotations everywhere. compile times allow for coffee breaks.
-<strong>slop:</strong> stack only. everything is copied. fast as fuck. no thinking required.</p>
+<p><strong>rust:</strong> complex borrow checker. lifetime annotations everywhere. long compile times.
+<strong>slop:</strong> stack focused. copy semantics by default. fast compilation. simpler mental model.</p>
 <hr>
 <h2 id="slop-vs-go"><a class="header" href="#slop-vs-go">slop vs go</a></h2>
-<p><strong>go:</strong> <code>if err != nil</code>. garbage collector pauses.
-<strong>slop:</strong> no gc. predictable performance. error handling? not in v0.0.1 (we crash).</p>
+<p><strong>go:</strong> explicit error checks everywhere. garbage collector pauses.
+<strong>slop:</strong> no gc pauses. predictable performance. panic-on-error (current epoch).</p>
 <hr>
 <h2 id="slop-vs-python"><a class="header" href="#slop-vs-python">slop vs python</a></h2>
-<p><strong>python:</strong> <code>camelCase</code> or <code>snake_case</code>? tabs or spaces? slow as molasses.
-<strong>slop:</strong> lowercase only. 2 spaces only. compiler yells at you. fast execution.</p>
+<p><strong>python:</strong> inconsistent casing. mixed indentation. slow execution.
+<strong>slop:</strong> strict lowercase. strict indentation. high performance.</p>
 <hr>
 <h2 id="slop-vs-c"><a class="header" href="#slop-vs-c">slop vs c</a></h2>
 <p><strong>c:</strong> segfaults. buffer overflows. undefined behavior.
-<strong>slop:</strong> defined behavior. strict structure.</p>
+<strong>slop:</strong> defined behavior. strict structure. safer defaults.</p>
 <hr>
 <h2 id="summary"><a class="header" href="#summary">summary</a></h2>
 <div class="table-wrapper">
@@ -736,7 +734,7 @@ use at your own risk. if it breaks, that’s on you.</p>
 <tr><td><strong>speed</strong></td><td>fast</td><td>fast</td><td>fast</td><td>slow</td></tr>
 <tr><td><strong>casing</strong></td><td>strict</td><td>mixed</td><td>mixed</td><td>mixed</td></tr>
 <tr><td><strong>indent</strong></td><td>strict</td><td>mixed</td><td>mixed</td><td>strict</td></tr>
-<tr><td><strong>vibes</strong></td><td>immaculate</td><td>complex</td><td>pragmatic</td><td>chaotic</td></tr>
+<tr><td><strong>vibes</strong></td><td>disciplined</td><td>complex</td><td>pragmatic</td><td>flexible</td></tr>
 </tbody>
 </table>
 </div>

@@ -36,7 +36,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-0b3658b5.js";
+            window.path_to_searchindex_js = "../searchindex-199f79f2.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-a5cfa9c5.js"></script>
@@ -176,42 +176,42 @@
                 <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="memory"><a class="header" href="#memory">memory</a></h1>
-<p><strong>stack only. heap is for people who like memory leaks.</strong></p>
+<p><strong>stack only. predictable and fast.</strong></p>
 <hr>
 <h2 id="no-garbage-collection"><a class="header" href="#no-garbage-collection">no garbage collection</a></h2>
-<p><strong>gc is a skill issue.</strong></p>
-<p>slop v0.0.1 uses strict stack allocation. if you need a heap, go use java and enjoy your 100ms pause.</p>
+<p><strong>gc pauses are unacceptable.</strong></p>
+<p>slop v0.0.1 uses strict stack allocation. applications that need consistent low-latency cannot afford stop-the-world pauses.</p>
 <p><strong>why?</strong></p>
 <ul>
-<li><strong>zero overhead</strong> - fast as fuck</li>
-<li><strong>deterministic</strong> - no “stop the world” surprises</li>
-<li><strong>simple</strong> - what you see is what you alloc</li>
+<li><strong>zero overhead</strong> - maximum throughput</li>
+<li><strong>deterministic</strong> - predictable execution time</li>
+<li><strong>simple</strong> - explicit resource lifecycle</li>
 </ul>
 <hr>
 <h2 id="memory-model"><a class="header" href="#memory-model">memory model</a></h2>
 <h3 id="stack-allocated"><a class="header" href="#stack-allocated">stack-allocated</a></h3>
-<p>everything lives on the stack. everything dies when the function ends.</p>
+<p>current types are stack-allocated. values persist only for the function scope.</p>
 <ul>
-<li><strong>u64</strong> - 8 bytes of pure number</li>
-<li><strong>bool</strong> - 1 byte of truth</li>
-<li><strong>str</strong> - pointer to read-only data (don’t worry about it)</li>
+<li><strong>u64</strong> - 8 bytes</li>
+<li><strong>bool</strong> - 1 byte</li>
+<li><strong>str</strong> - pointer to data segment</li>
 </ul>
 <p><strong>behavior:</strong></p>
 <ul>
 <li>enter function -&gt; alloc</li>
 <li>exit function -&gt; destroy</li>
-<li>forgot to free? impossible. compiler did it for you.</li>
+<li>automatic cleanup by compiler</li>
 </ul>
 <h3 id="copy-semantics"><a class="header" href="#copy-semantics">copy semantics</a></h3>
-<p>everything is copied. ownership is for v0.2.</p>
+<p>values are copied on assignment by default in this epoch.</p>
 <pre><code class="language-slop">a = 67
-b = a                            # b is a clone. a doesn't care.
-print a                          # still alive
-print b                          # also alive
+b = a                            # b is a copy. a remains valid.
+print a                          # valid
+print b                          # valid
 </code></pre>
 <hr>
 <h2 id="future"><a class="header" href="#future">future</a></h2>
-<p>heap allocation and manual memory management (<code>rekt</code>) are coming when we feel like it.</p>
+<p>heap allocation and manual memory management (<code>rekt</code>) are planned for future epochs.</p>
 
                     </main>
 

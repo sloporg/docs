@@ -36,7 +36,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-0b3658b5.js";
+            window.path_to_searchindex_js = "../searchindex-199f79f2.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-a5cfa9c5.js"></script>
@@ -176,14 +176,14 @@
                 <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="types"><a class="header" href="#types">types</a></h1>
-<p><strong>3 types. that’s it. don’t ask for more.</strong></p>
+<p><strong>core types.</strong> minimal starting set.</p>
 <hr>
 <h2 id="og"><a class="header" href="#og">og</a></h2>
-<p>built-in types. simple as fuck.</p>
+<p>built-in types.</p>
 <h3 id="u64"><a class="header" href="#u64">u64</a></h3>
-<p>big unsigned integer. negative numbers are fake news.</p>
+<p>unsigned 64-bit integer. primary numeric type for v0.0.1.</p>
 <pre><code class="language-slop">x u64 = 67
-y = 100                          # compiler figured it out
+y = 100                          # inferred as u64
 </code></pre>
 <p><strong>math:</strong> <code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>%</code></p>
 <h3 id="bool"><a class="header" href="#bool">bool</a></h3>
@@ -193,17 +193,17 @@ flag = nay
 </code></pre>
 <p><strong>logic:</strong> <code>&amp;&amp;</code> <code>||</code> <code>!</code></p>
 <h3 id="str"><a class="header" href="#str">str</a></h3>
-<p>text. read-only. don’t try to change it.</p>
+<p>text. read-only slices.</p>
 <pre><code class="language-slop">msg str = "lowercase or die"
 </code></pre>
 <hr>
 <h2 id="type-inference"><a class="header" href="#type-inference">type inference</a></h2>
-<p>compiler is smarter than you.</p>
+<p>compiler infers types where unambiguous.</p>
 <pre><code class="language-slop">a = 10                           # u64
 b = yea                          # bool
 c = "txt"                        # str
 </code></pre>
-<p><strong>explicit types</strong> required for functions because we said so.</p>
+<p><strong>explicit types</strong> required for functions.</p>
 
                     </main>
 

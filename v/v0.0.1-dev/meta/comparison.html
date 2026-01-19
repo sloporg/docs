@@ -36,7 +36,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-9a1cd6f5.js";
+            window.path_to_searchindex_js = "../searchindex-12aad79e.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-a5cfa9c5.js"></script>
@@ -176,326 +176,39 @@
                 <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="comparison"><a class="header" href="#comparison">comparison</a></h1>
-<p>slop vs other languages</p>
+<p><strong>slop vs the world.</strong></p>
 <hr>
-<h2 id="terminology-mapping"><a class="header" href="#terminology-mapping">terminology mapping</a></h2>
-<h3 id="slop--other-languages"><a class="header" href="#slop--other-languages">slop → other languages</a></h3>
-<p><strong>bunch</strong> - struct with auto .str() method</p>
-<ul>
-<li>rust: struct</li>
-<li>go: struct</li>
-<li>typescript: interface, type</li>
-<li>python: class, dataclass</li>
-<li>c++: struct, class</li>
-</ul>
-<p><strong>leak</strong> - public visibility modifier</p>
-<ul>
-<li>rust: pub</li>
-<li>go: uppercase first letter</li>
-<li>typescript: export</li>
-<li>python: no equivalent (public by convention)</li>
-<li>c++: public</li>
-</ul>
-<p><strong>mood</strong> - sum types with variants</p>
-<ul>
-<li>rust: enum</li>
-<li>swift: enum</li>
-<li>typescript: union types</li>
-<li>go: no equivalent (use constants + interfaces)</li>
-<li>c++: enum, union</li>
-<li>python: dataclass with literal types</li>
-</ul>
-<p><strong>vibe</strong> - trait/interface definitions</p>
-<ul>
-<li>rust: trait</li>
-<li>go: interface</li>
-<li>typescript: interface, type</li>
-<li>haskell: typeclass, type families</li>
-<li>c++: abstract class, pure virtual functions</li>
-<li>java: interface, abstract class</li>
-</ul>
-<p><strong>gives</strong> - implementations</p>
-<ul>
-<li>rust: impl</li>
-<li>go: interface methods</li>
-<li>typescript: implements interface</li>
-<li>haskell: instance methods</li>
-<li>java: implements</li>
-</ul>
-<p><strong>chunk</strong> - a single .sl file</p>
-<ul>
-<li>rust: module</li>
-<li>go: package/file</li>
-<li>typescript: module</li>
-<li>haskell: module</li>
-<li>c++: compilation unit (.cpp, .h)</li>
-</ul>
-<p><strong>nah</strong> - void/nothing/empty type</p>
-<ul>
-<li>rust: unit</li>
-<li>go: no return</li>
-<li>typescript: void, undefined</li>
-<li>haskell: ()</li>
-<li>c++: void</li>
-<li>python: none (returns none implicitly)</li>
-</ul>
-<p><strong>yeet</strong> - crash/abort with message</p>
-<ul>
-<li>rust: panic!</li>
-<li>go: panic</li>
-<li>typescript: throw new Error()</li>
-<li>haskell: error</li>
-<li>c++: abort()</li>
-</ul>
-<p><strong>! operator</strong> - error handling</p>
-<ul>
-<li>rust: ? operator (similar usage)</li>
-<li>go: if err != nil { return err }</li>
-<li>typescript: try/catch, throw</li>
-<li>python: try/except raise</li>
-<li>haskell: error</li>
-<li>c++: try/catch, throw</li>
-</ul>
-<p><strong>e</strong> - reserved error variable</p>
-<ul>
-<li>rust: no equivalent</li>
-<li>go: no equivalent</li>
-<li>typescript: no equivalent (catch variable)</li>
-<li>haskell: no equivalent</li>
-<li>c++: no equivalent</li>
-</ul>
-<p><strong>slug</strong> - async task handle</p>
-<ul>
-<li>rust: future<code>&lt;t&gt;</code></li>
-<li>go: chan (sync) or goroutine (async)</li>
-<li>typescript: promise</li>
-<li>javascript/typescript: promise</li>
-<li>python: asyncio.future</li>
-<li>haskellel: async mtl/async</li>
-<li>c++: std::future, coroutines</li>
-</ul>
-<p><strong>slap</strong> - spawn async task</p>
-<ul>
-<li>rust: tokio::spawn</li>
-<li>go: go func()</li>
-<li>typescript: async/await</li>
-<li>javascript: async/await</li>
-<li>python: asyncio.create_task()</li>
-<li>haskellel: async</li>
-<li>c++: std::async, coroutines</li>
-</ul>
-<p><strong>slurp</strong> - await result</p>
-<ul>
-<li>rust: .await</li>
-<li>go: &lt;-chan (no direct await)</li>
-<li>typescript: await</li>
-<li>javascript: await</li>
-<li>python: await</li>
-<li>haskellel: await m</li>
-</ul>
-<p><strong>slush</strong> - spawn + await</p>
-<ul>
-<li>rust: spawn().await</li>
-<li>go: no direct equivalent</li>
-<li>typescript: no direct equivalent</li>
-<li>javascript: no direct equivalent</li>
-<li>python: asyncio.create_task().result()</li>
-</ul>
-<p><strong>cycle</strong> - repeat at intervals</p>
-<ul>
-<li>rust: tokio::interval loop</li>
-<li>go: time.ticker</li>
-<li>typescript: setinterval</li>
-<li>python: loop with time.sleep()</li>
-<li>haskellel: loop with thread.delay()</li>
-</ul>
-<p><strong>sleep</strong> - delay execution</p>
-<ul>
-<li>rust: tokio::sleep</li>
-<li>go: time.sleep</li>
-<li>typescript: no direct equivalent (setTimeout)</li>
-<li>python: time.sleep()</li>
-<li>haskellel: thread.sleep()</li>
-</ul>
-<p><strong>rekt</strong> - free memory</p>
-<ul>
-<li>rust: drop (automatically)</li>
-<li>go: no direct equivalent (gc)</li>
-<li>typescript: no direct equivalent (gc)</li>
-<li>python: del or context manager</li>
-</ul>
-<p><strong>bunch packing</strong> - compiler optimizes layout</p>
-<ul>
-<li>rust: repr(derive) (no auto layout)</li>
-<li>go: no direct equivalent (gc)</li>
-<li>typescript: no direct equivalent</li>
-<li>haskell: no direct equivalent</li>
-<li>c++: #pragma pack (limited)</li>
-<li>python: @dataclass (no control)</li>
-</ul>
+<h2 id="slop-vs-rust"><a class="header" href="#slop-vs-rust">slop vs rust</a></h2>
+<p><strong>rust:</strong> borrow checker fights you. lifetime annotations everywhere. compile times allow for coffee breaks.
+<strong>slop:</strong> stack only. everything is copied. fast as fuck. no thinking required.</p>
 <hr>
-<h2 id="concept-comparison"><a class="header" href="#concept-comparison">concept comparison</a></h2>
-<h3 id="error-handling"><a class="header" href="#error-handling">error handling</a></h3>
+<h2 id="slop-vs-go"><a class="header" href="#slop-vs-go">slop vs go</a></h2>
+<p><strong>go:</strong> <code>if err != nil</code>. garbage collector pauses.
+<strong>slop:</strong> no gc. predictable performance. error handling? not in v0.0.1 (we crash).</p>
+<hr>
+<h2 id="slop-vs-python"><a class="header" href="#slop-vs-python">slop vs python</a></h2>
+<p><strong>python:</strong> <code>camelCase</code> or <code>snake_case</code>? tabs or spaces? slow as molasses.
+<strong>slop:</strong> lowercase only. 2 spaces only. compiler yells at you. fast execution.</p>
+<hr>
+<h2 id="slop-vs-c"><a class="header" href="#slop-vs-c">slop vs c</a></h2>
+<p><strong>c:</strong> segfaults. buffer overflows. undefined behavior.
+<strong>slop:</strong> defined behavior. strict structure.</p>
+<hr>
+<h2 id="summary"><a class="header" href="#summary">summary</a></h2>
 <div class="table-wrapper">
 <table>
 <thead>
-<tr><th>feature</th><th>slop</th><th>rust</th><th>go</th><th>typescript</th><th>python</th><th>c++</th><th>haskellel</th></tr>
+<tr><th>feature</th><th>slop</th><th>rust</th><th>go</th><th>python</th></tr>
 </thead>
 <tbody>
-<tr><td>try/catch</td><td>? operator + e var</td><td>? operator</td><td>panic!</td><td>if err != nil</td><td>try/catch</td><td>try/except raise</td><td>error</td></tr>
-<tr><td>result type</td><td>explicit</td><td>can return <code>nah</code></td><td>result<code>&lt;t&gt;</code></td><td>error</td><td>result<code>&lt;t&gt;</code></td><td>error</td><td>error</td></tr>
-<tr><td>cleanup</td><td>rekt required</td><td>automatic drop</td><td>automatic gc</td><td>automatic gc</td><td>automatic gc</td><td>automatic gc</td><td>automatic gc</td></tr>
-<tr><td>crash</td><td>yeet</td><td>panic!</td><td>panic!</td><td>panic!</td><td>throw new error</td><td>throw exception</td><td>os.exit(1)</td></tr>
-<tr><td>reserved var</td><td>e (error scope)</td><td>no equivalent</td><td>no equivalent</td><td>no equivalent</td><td>no equivalent</td><td>catch variable</td><td>no equivalent</td></tr>
+<tr><td><strong>memory</strong></td><td>stack (copy)</td><td>ownership</td><td>gc</td><td>gc</td></tr>
+<tr><td><strong>speed</strong></td><td>fast</td><td>fast</td><td>fast</td><td>slow</td></tr>
+<tr><td><strong>casing</strong></td><td>strict</td><td>mixed</td><td>mixed</td><td>mixed</td></tr>
+<tr><td><strong>indent</strong></td><td>strict</td><td>mixed</td><td>mixed</td><td>strict</td></tr>
+<tr><td><strong>vibes</strong></td><td>immaculate</td><td>complex</td><td>pragmatic</td><td>chaotic</td></tr>
 </tbody>
 </table>
 </div>
-<h3 id="asyncawait"><a class="header" href="#asyncawait">async/await</a></h3>
-<p>| feature | slop | rust | go | typescript | javascript | python | haskellel |
-|———|——|—–|–––––|–––––––|––––––––|———–|
-| spawn | slap | tokio::spawn | go func() | async | async/await | async/await | asyncio.create_task | async mtl/async |
-| await | slurp | .await | &lt;-chan (no direct) | .await | await | await | await | await | await mtl/await |
-| spawn+await | slush | spawn().await | no direct equivalent | no direct equivalent | no direct equivalent | asyncio.create_task().result() | no direct equivalent | no direct equivalent |
-| timer | cycle | tokio::interval | time.ticker | setinterval | settimeout | settimeout | time.sleep() | thread.sleep() | no direct equivalent |</p>
-<h3 id="ownership"><a class="header" href="#ownership">ownership</a></h3>
-<p>| feature | slop | rust | go | typescript | javascript | python | c++ | haskellel |
-|———|——|—–|–––––|–––––––|––––|——|———–|
-| move semantics | default | move | references only | move by default | references only | move by default |
-| heap cleanup | rekt required | automatic drop | automatic gc | automatic gc | automatic gc | automatic gc | raii garbage collector | deinit | defer |
-| lifetime | compiler enforces | borrow checker | no lifetime | no lifetime | no lifetime | no lifetime | borrow checker | raii lifetime |
-| copy semantics | stack types only | copy everywhere | copy everywhere | copy everywhere | copy everywhere | copy everywhere | copy everywhere |</p>
-<h3 id="types"><a class="header" href="#types">types</a></h3>
-<p>| feature | slop | rust | go | typescript | javascript | python | c++ | haskellel |
-|———|——|—–|–––––|–––––––|––––|——|———–|
-| generics | of t, k (exp) | <code>&lt;t&gt;</code> (exp) | type parameters | generics (exp) | type parameters | no type parameters | generics | no equivalent | generic wildcards | type parameters | no equivalent |
-| sum types | mood (exp) | of t, k (exp) | enum (exp) | enum (exp) | enum variants (exp) | type unions (exp) | type aliases | type aliases | type aliases | newtype (exp) | no equivalent | type aliases (exp) | | no equivalent |
-| explicit null | nah (built-in) | option (exp) | optional<code>&lt;t&gt;</code> (exp) | no equivalent | union types (exp) | no equivalent | none/null | undefined | undefined | null/nil | optional<code>&lt;t&gt;</code> (exp) | undefined or null |</p>
-<hr>
-<h2 id="syntax-comparison"><a class="header" href="#syntax-comparison">syntax comparison</a></h2>
-<h3 id="syntax-choices"><a class="header" href="#syntax-choices">syntax choices</a></h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>feature</th><th>slop</th><th>rust</th><th>go</th><th>typescript</th><th>javascript</th><th>python</th><th>c++</th><th>haskellel</th></tr>
-</thead>
-<tbody>
-<tr><td>braces</td><td>no, 2-space indent</td><td>no braces, 2-space indent</td><td>braces</td><td>braces</td><td>no braces</td><td>braces, braces, braces</td><td>braces</td><td></td></tr>
-<tr><td>indentation</td><td>2-space strict</td><td>4-space (soft)</td><td>2-space (tabs)</td><td>2-space (soft)</td><td>2-space (tabs)</td><td>4-space (soft)</td><td>2-space (tabs)</td><td>2-space (tabs)</td></tr>
-<tr><td>semicolons</td><td>yes</td><td>yes</td><td>yes</td><td>yes</td><td>yes</td><td>yes</td><td>yes</td><td>yes</td></tr>
-<tr><td>line comments</td><td>#, ##</td><td>//, ///</td><td>#, ///, //</td><td>///</td><td>#, /*</td><td>#</td><td>#, /*</td><td>#</td></tr>
-<tr><td>strings</td><td>“yo”, “world”</td><td>“yo”, “world”</td><td>“yo”, “world”</td><td>“yo”, “world”</td><td>“yo”, “world”</td><td>“yo”, “world”</td><td>“yo”, “world”</td><td>“yo”, “world”</td></tr>
-<tr><td>variables</td><td>lowercase only</td><td>snake_case</td><td>camelcase</td><td>camelcase</td><td>snake_case</td><td>camelcase</td><td>pascalcase</td><td>camelcase</td></tr>
-<tr><td>functions</td><td>fn name() def func() fn name() fn name()</td><td>function name()</td><td>def name()</td><td>function name()</td><td>func name()</td><td>def</td><td>def func name()</td><td></td></tr>
-</tbody>
-</table>
-</div>
-<hr>
-<h2 id="performance-comparison"><a class="header" href="#performance-comparison">performance comparison</a></h2>
-<h3 id="compilation-speed"><a class="header" href="#compilation-speed">compilation speed</a></h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>language</th><th>slop</th><th>rust</th><th>go</th><th>typescript</th><th>go</th><th>python</th><th>haskellel</th></tr>
-</thead>
-<tbody>
-<tr><td>compile time</td><td>n/a</td><td>fast</td><td>moderate</td><td>slow</td><td>fast</td><td>slow</td><td>moderate</td></tr>
-<tr><td>runtime</td><td>fast</td><td>very fast</td><td>fast</td><td>very fast</td><td>moderate</td><td>moderate</td><td>slow</td></tr>
-</tbody>
-</table>
-</div>
-<h3 id="memory-overhead"><a class="header" href="#memory-overhead">memory overhead</a></h3>
-<p>| language | slop | rust | go | typescript | javascript | python | c++ | haskellel |
-|———|——|—–|–––––|–––––––|––––|——|———–|
-| runtime size | minimal | moderate | large | moderate | large | moderate | n/a |
-| gc overhead | none | none | none | none | small | large | moderate | n/a |</p>
-<ul>
-<li>rationale | manual control, predictable | no gc pauses | gc adds overhead for low-end hardware | manual control, predictable, suitable for embedded/blockchain | agent-friendly |</li>
-</ul>
-<hr>
-<h2 id="ecosystem-comparison"><a class="header" href="#ecosystem-comparison">ecosystem comparison</a></h2>
-<h3 id="package-managers"><a class="header" href="#package-managers">package managers</a></h3>
-<p>| feature | slop | rust | go | typescript | javascript | python | c++ | haskellel |
-|———|——|—–|–––––|–––––––|––––|——|———–|
-| package format | slop.toml | cargo.toml | package.json | go.mod | package.json | n/a | n/a |
-| dependency source | git repos | git repos | git repos | n/a | n/a | n/a | git repos |
-| versioning | semantic | semantic | semantic | semantic | semantic | semver | semver | npm versioning | n/a | n/a |</p>
-<hr>
-<h2 id="unique-slop-features"><a class="header" href="#unique-slop-features">unique slop features</a></h2>
-<h3 id="what-slop-has-that-others-dont"><a class="header" href="#what-slop-has-that-others-dont">what slop has that others don’t</a></h3>
-<ul>
-<li><strong>agent-first:</strong> all compiler output is jsonl (machine-readable)</li>
-<li><strong>lowercase only:</strong> strict enforcement everywhere</li>
-<li><strong>2-space strict:</strong> no tabs, no mixed indent</li>
-<li><strong>implicit return:</strong> last line is result</li>
-<li><strong>lit functions:</strong> special built-ins without parens (print, log, sleep, yeet)</li>
-<li><strong>! operator:</strong> error handling with reserved e variable</li>
-<li><strong>bunch packing:</strong> compiler enforces optimal layout</li>
-<li><strong>mood sum types:</strong> powerful enums with associated data</li>
-<li><strong>vibe/gives:</strong> clean polymorphism</li>
-<li><strong>strict organization:</strong> enforced file structure order</li>
-<li><strong>no garbage collection:</strong> manual memory with rekt enforcement</li>
-<li><strong>sloppycost:</strong> compile-time cost analysis</li>
-<li><strong>single source of truth:</strong> all docs in one repo</li>
-<li><strong>neovim-only lsp:</strong> focused development effort</li>
-<li><strong>dense versioning:</strong> slow and steady, no rush to v1.0</li>
-</ul>
-<h3 id="why-different"><a class="header" href="#why-different">why different</a></h3>
-<p>not “just another language” - designed with clear purpose:</p>
-<ul>
-<li>agent-first architecture</li>
-<li>sloopy naming for memorability</li>
-<li>consistent indent-only syntax</li>
-<li>explicit error handling</li>
-<li>ownership without complexity</li>
-<li>performance without overhead</li>
-<li>blockchain-ready from epoch 1</li>
-</ul>
-<hr>
-<h2 id="migration-guides"><a class="header" href="#migration-guides">migration guides</a></h2>
-<h3 id="from-rust-to-slop"><a class="header" href="#from-rust-to-slop">from rust to slop</a></h3>
-<p><strong>similarities:</strong></p>
-<ul>
-<li>ownership model</li>
-<li>error handling patterns</li>
-<li>async/await concepts</li>
-</ul>
-<p><strong>differences:</strong></p>
-<ul>
-<li>no lifetimes to learn</li>
-<li>simpler error syntax</li>
-<li>lit functions vs macros</li>
-<li>different standard library</li>
-</ul>
-<h3 id="from-go-to-slop"><a class="header" href="#from-go-to-slop">from go to slop</a></h3>
-<p><strong>similarities:</strong></p>
-<ul>
-<li>async/await concepts</li>
-<li>explicit channel types</li>
-</ul>
-<p><strong>differences:</strong></p>
-<ul>
-<li>no implicit channels (channels are explicit)</li>
-<li>simpler error handling</li>
-<li>no goroutine concept</li>
-<li>no defer (use rekt instead)</li>
-</ul>
-<h3 id="from-python-to-slop"><a class="header" href="#from-python-to-slop">from python to slop</a></h3>
-<p><strong>similarities:</strong></p>
-<ul>
-<li>type hints (optional types explicit)</li>
-<li>list comprehensions</li>
-</ul>
-<p><strong>differences:</strong></p>
-<ul>
-<li>no dynamic typing (all types explicit)</li>
-<li>no classes/object model</li>
-<li>no implicit none</li>
-</ul>
-<hr>
-<h2 id="references"><a class="header" href="#references">references</a></h2>
-<p>slop language specification - see <code>syntax.md</code>, <code>types.md</code>, <code>functions.md</code>
-slop versioning - see <code>versioning.md</code>
-slop changelog - see <code>changelog.md</code></p>
 
                     </main>
 

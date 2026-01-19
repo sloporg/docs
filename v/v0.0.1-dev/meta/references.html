@@ -36,7 +36,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-9a1cd6f5.js";
+            window.path_to_searchindex_js = "../searchindex-12aad79e.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-a5cfa9c5.js"></script>
@@ -176,37 +176,21 @@
                 <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="references"><a class="header" href="#references">references</a></h1>
-<p>slop terminology and design decisions</p>
+<p><strong>terms you need to know.</strong></p>
 <hr>
-<h2 id="terminology"><a class="header" href="#terminology">terminology</a></h2>
-<h3 id="og-types"><a class="header" href="#og-types">og types</a></h3>
-<p><strong>definition:</strong> built-in types that come with slop</p>
-<p><strong>og types:</strong></p>
-<ul>
-<li>integers: <code>u64</code></li>
-<li>logic: <code>bool</code></li>
-<li>text: <code>str</code></li>
-</ul>
+<h2 id="terms"><a class="header" href="#terms">terms</a></h2>
+<h3 id="og"><a class="header" href="#og">og</a></h3>
+<p>built-in types (<code>u64</code>, <code>bool</code>, <code>str</code>). the original gangstas.</p>
 <h3 id="chunk"><a class="header" href="#chunk">chunk</a></h3>
-<p><strong>definition:</strong> compilation unit (a <code>.sl</code> file)</p>
+<p>a single <code>.sl</code> file. compilation unit.</p>
 <hr>
-<h2 id="design-decisions"><a class="header" href="#design-decisions">design decisions</a></h2>
+<h2 id="design-choices"><a class="header" href="#design-choices">design choices</a></h2>
 <h3 id="lowercase-everything"><a class="header" href="#lowercase-everything">lowercase everything</a></h3>
-<p><strong>decision:</strong> strict lowercase for all identifiers and keywords.</p>
-<p><strong>rationale:</strong></p>
-<ul>
-<li>eliminates casing ambiguity (camelCase vs snake_case)</li>
-<li>prevents agent hallucinations</li>
-<li>simplifies lexing/parsing</li>
-</ul>
+<p><strong>decision:</strong> all lowercase.
+<strong>why:</strong> agents are dumb. casing is ambiguous. we removed the ambiguity.</p>
 <h3 id="no-garbage-collection"><a class="header" href="#no-garbage-collection">no garbage collection</a></h3>
-<p><strong>decision:</strong> strict stack allocation (v0.0.1).</p>
-<p><strong>rationale:</strong></p>
-<ul>
-<li>zero runtime overhead</li>
-<li>deterministic execution</li>
-<li>simple implementation</li>
-</ul>
+<p><strong>decision:</strong> stack only.
+<strong>why:</strong> speed. determinism. simplicity.</p>
 
                     </main>
 

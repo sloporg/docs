@@ -36,7 +36,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-9a1cd6f5.js";
+            window.path_to_searchindex_js = "../searchindex-12aad79e.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-a5cfa9c5.js"></script>
@@ -176,173 +176,55 @@
                 <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="versioning"><a class="header" href="#versioning">versioning</a></h1>
-<p>slop versioning strategy</p>
+<p><strong>dense versioning. quality over quantity.</strong></p>
 <hr>
-<h2 id="philosophy"><a class="header" href="#philosophy">philosophy</a></h2>
-<p><strong>dense versioning</strong> - each release is complete, tested, and stable</p>
-<p>we do not rush to v1.0</p>
+<h2 id="the-philosophy"><a class="header" href="#the-philosophy">the philosophy</a></h2>
+<p>we don’t release broken shit. each version is <strong>dense</strong>.</p>
+<p><strong>dense means:</strong></p>
+<ul>
+<li>complete features</li>
+<li>95% test coverage minimum</li>
+<li>no critical bugs</li>
+<li>zero rush</li>
+</ul>
 <hr>
-<h2 id="version-scheme"><a class="header" href="#version-scheme">version scheme</a></h2>
-<p><strong>0.0.x</strong> - pre-alpha development, breaking changes expected</p>
-<p><strong>0.1.x</strong> - epoch 1 stable, patch releases</p>
-<p><strong>0.2.x</strong> - epoch 2 stable, patch releases</p>
-<p><strong>0.x.0</strong> - new epoch milestone</p>
-<p><strong>1.0.0</strong> - api frozen, production ready</p>
+<h2 id="scheme"><a class="header" href="#scheme">scheme</a></h2>
+<p><strong>0.0.x</strong> - pre-alpha. expect breakage.
+<strong>0.1.x</strong> - epoch 1. stable.
+<strong>1.0.0</strong> - finished. api frozen.</p>
+<p><strong>hotfixes?</strong>
+just increment the patch number. <code>0.1.0</code> -&gt; <code>0.1.1</code>.
+don’t give me <code>0.1.0-hotfix2+build99</code>. that’s noise.</p>
+<p><strong>composite versions?</strong>
+<code>1.0.0.2023.a1b2c</code>? look like an ip address?
+<strong>rejected.</strong> keep the hash in the build logs.</p>
 <hr>
 <h2 id="epochs"><a class="header" href="#epochs">epochs</a></h2>
-<p>each epoch introduces major features and must be <strong>dense</strong> before moving forward</p>
-<h3 id="dense-means"><a class="header" href="#dense-means">dense means</a></h3>
-<ul>
-<li>all planned features complete and tested</li>
-<li>test coverage ≥ 95% for new features</li>
-<li>no critical bugs remaining</li>
-<li>documentation complete for all features</li>
-<li>real-world usage validates design</li>
-<li>feels right - no rush, take time needed</li>
-</ul>
+<p>we move in epochs.</p>
+<p><strong>0.x.0</strong> - new epoch. major features.
+<strong>0.x.y</strong> - patch. bug fixes only. no new features.</p>
 <hr>
-<h2 id="experimental-features"><a class="header" href="#experimental-features">experimental features</a></h2>
-<p><strong>policy:</strong></p>
-<ul>
-<li>all experimental features available with <code>--experimental</code> flag</li>
-<li>use at your own risk in production</li>
-<li>may have breaking changes between releases</li>
-<li>graduation to stable announced in changelog when promoted</li>
-</ul>
-<p><strong>graduation criteria:</strong></p>
-<ul>
-<li>feature fully tested with ≥ 95% coverage</li>
-<li>no known bugs for current release cycle</li>
-<li>feels right and ready</li>
-<li>announced in changelog when promoted</li>
-<li>included in next epoch release</li>
-</ul>
-<hr>
-<h2 id="feature-lifecycle"><a class="header" href="#feature-lifecycle">feature lifecycle</a></h2>
-<p><strong>inception</strong> - develop in feat/<code>&lt;name&gt;</code> branch</p>
-<p><strong>experimental</strong> - merge to main, available with <code>-exp</code> flag</p>
-<p><strong>stabilization</strong> - promote to stable epoch when ready, announced in changelog</p>
-<hr>
-<h2 id="release-process"><a class="header" href="#release-process">release process</a></h2>
-<h3 id="patch-releases-0xy"><a class="header" href="#patch-releases-0xy">patch releases (0.x.y)</a></h3>
-<p><strong>when:</strong> bug fixes, minor improvements, no new features</p>
-<p><strong>frequency:</strong> as needed</p>
-<p><strong>breaking changes:</strong> never</p>
-<p><strong>example:</strong> 0.1.0 → 0.1.1 (fix parser bug)</p>
-<h3 id="minor-releases-0x0"><a class="header" href="#minor-releases-0x0">minor releases (0.x.0)</a></h3>
-<p><strong>when:</strong> new epoch, major features added</p>
-<p><strong>frequency:</strong> when dense (no fixed schedule)</p>
-<p><strong>breaking changes:</strong> allowed, documented in changelog</p>
-<p><strong>example:</strong> 0.1.0 → 0.2.0 (epoch 2 data core complete)</p>
-<h3 id="major-release-100"><a class="header" href="#major-release-100">major release (1.0.0)</a></h3>
-<p><strong>when:</strong> all planned features complete, production ready</p>
-<p><strong>criteria:</strong></p>
-<ul>
-<li>epochs 1-8 complete</li>
-<li>self-hosting complete</li>
-<li>documentation complete</li>
-<li>community validation (if any)</li>
-<li>feels ready for production</li>
-</ul>
-<p><strong>guarantees after 1.0:</strong></p>
-<ul>
-<li>no breaking changes to core language</li>
-<li>experimental features can still break</li>
-<li>deprecation warnings for 2 releases before removal</li>
-</ul>
+<h2 id="experimental"><a class="header" href="#experimental">experimental</a></h2>
+<p>available with <code>--experimental</code> flag.
+use at your own risk. if it breaks, that’s on you.</p>
 <hr>
 <h2 id="version-header"><a class="header" href="#version-header">version header</a></h2>
-<p>all slop files declare their version:</p>
-<pre><code class="language-slop">arch \&lt;system\&gt; \&lt;version\&gt;
+<p>files must declare their version.</p>
+<pre><code class="language-slop">arch &lt;system&gt; &lt;version&gt;
 </code></pre>
-<p><strong>format:</strong> <code>arch \&lt;system\&gt; \&lt;version\&gt;</code></p>
-<p><strong>version:</strong> minimum compiler version required</p>
-<p><strong>purpose:</strong></p>
+<p><strong>why?</strong></p>
 <ul>
-<li>forward compatibility checking</li>
-<li>feature gating (experimental)</li>
-<li>compilation target selection</li>
+<li>stops you from running v0.2 code on v0.1 compiler</li>
+<li>explicit constraints</li>
 </ul>
 <hr>
 <h2 id="backward-compatibility"><a class="header" href="#backward-compatibility">backward compatibility</a></h2>
-<p><strong>before 1.0:</strong> breaking changes allowed between epochs</p>
-<p><strong>after 1.0:</strong> no breaking changes to core language</p>
-<p><strong>experimental:</strong> can break anytime (that’s the point)</p>
-<hr>
-<h2 id="changelog"><a class="header" href="#changelog">changelog</a></h2>
-<p>all releases documented in <code>changelog.md</code>:</p>
-<p><strong>format:</strong></p>
-<pre><code class="language-markdown">## [0.2.0] - 2026-02-15
-
-### added
-- arrays, maps, tuples
-- bunch declarations
-- module system
-- tree-shaking
-
-### changed
-- improved error messages
-- faster lexer performance
-
-### fixed
-- parser bug with nested blocks
-- memory leak in string interpolation
-
-### experimental promoted to stable
-- none this release
-</code></pre>
+<p><strong>before 1.0:</strong> we break things if they suck.
+<strong>after 1.0:</strong> stability guaranteed.</p>
 <hr>
 <h2 id="current-status"><a class="header" href="#current-status">current status</a></h2>
-<p><strong>version:</strong> 0.0.1</p>
-<p><strong>status:</strong> language specification complete, compiler cooking</p>
-<p><strong>next milestone:</strong> epoch 1 (v0.1.0) - basic execution and parsing complete</p>
-<hr>
-<h2 id="comparison-with-other-languages"><a class="header" href="#comparison-with-other-languages">comparison with other languages</a></h2>
-<h3 id="rust"><a class="header" href="#rust">rust</a></h3>
-<p>similar dense versioning, long road to v1.0</p>
-<h3 id="go"><a class="header" href="#go">go</a></h3>
-<p>rapid to 1.0, strong compatibility guarantee</p>
-<h3 id="python"><a class="header" href="#python">python</a></h3>
-<p>long cycles, major versions break compatibility</p>
-<h3 id="slop-approach"><a class="header" href="#slop-approach">slop approach</a></h3>
-<p>rust-style density + go-style stability post-1.0</p>
-<hr>
-<h2 id="architecture-versioning"><a class="header" href="#architecture-versioning">architecture versioning</a></h2>
-<p><strong>native architectures:</strong></p>
-<ul>
-<li><code>arch amd64 0.0.1</code> - x86-64 targets</li>
-<li><code>arch arm64 0.0.1</code> - arm64 targets</li>
-</ul>
-<p><strong>evm:</strong></p>
-<ul>
-<li><code>arch evm fusaka</code> - named hardfork</li>
-<li><code>arch evm 0.11.0</code> - version number</li>
-</ul>
-<p><strong>svm:</strong></p>
-<ul>
-<li><code>arch svm mainnet 1.18</code> - network + version</li>
-<li><code>arch svm devnet 1.18</code> - testnet + version</li>
-</ul>
-<p><strong>version starts at:</strong> 0.0.1 (not 0.1.0)</p>
-<p><strong>increment with:</strong> language features, not arch updates</p>
-<hr>
-<h2 id="self-hosting-impact"><a class="header" href="#self-hosting-impact">self-hosting impact</a></h2>
-<p><strong>epoch 5:</strong> self-hosting begins (can compile simple slop programs in slop)</p>
-<p><strong>epoch 6:</strong> self-hosting complete (rust compiler dropped)</p>
-<p><strong>after epoch 6:</strong> compiler written in slop itself, bootstrapped from previous version</p>
-<p><strong>versioning stays same:</strong> epochs continue as normal</p>
-<hr>
-<h2 id="dense-versioning-explained"><a class="header" href="#dense-versioning-explained">dense versioning explained</a></h2>
-<p>each epoch must be <strong>dense</strong> before moving forward</p>
-<p><strong>dense means:</strong></p>
-<ul>
-<li>all planned features complete and tested</li>
-<li>test coverage ≥ 95% for new features</li>
-<li>no critical bugs remaining</li>
-<li>documentation complete for all features</li>
-<li>real-world usage validates design</li>
-<li>feels right - no rush, take the time needed</li>
-</ul>
+<p><strong>version:</strong> 0.0.1
+<strong>status:</strong> compiler cooking.</p>
 
                     </main>
 

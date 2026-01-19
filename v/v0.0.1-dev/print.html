@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-4d13894f.js";
+            window.path_to_searchindex_js = "searchindex-c659bc3a.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-a5cfa9c5.js"></script>
@@ -296,12 +296,12 @@ cargo build --release
 <pre><code class="language-slop">arch amd64 0.0.1
 
 fn main()
-  print "agents write better code than you"
+  print "agents write reliable code"
 </code></pre>
 <p>compile and run:</p>
 <pre><code class="language-bash">slopc main.sl -o main
 ./main
-# output: agents write better code than you
+# output: agents write reliable code
 </code></pre>
 <hr>
 <h2 id="language-basics"><a class="header" href="#language-basics">language basics</a></h2>
@@ -491,7 +491,7 @@ c = "txt"                        # str
   x                              # implicit return
 </code></pre>
 <h3 id="implicit-return"><a class="header" href="#implicit-return">implicit return</a></h3>
-<p>typing <code>ret</code> at the end is redundant. don’t do it.</p>
+<p>typing <code>ret</code> at the end is unnecessary. concise code is preferred.</p>
 <pre><code class="language-slop">fn add(a u64, b u64) u64
   a + b
 </code></pre>
@@ -690,6 +690,14 @@ use at your own risk. if it breaks, that’s on you.</p>
 <h1 id="changelog"><a class="header" href="#changelog">changelog</a></h1>
 <p><strong>history of slop.</strong></p>
 <hr>
+<h2 id="001-dev2---2026-01-19"><a class="header" href="#001-dev2---2026-01-19">[0.0.1-dev.2] - 2026-01-19</a></h2>
+<h3 id="refined"><a class="header" href="#refined">refined</a></h3>
+<ul>
+<li><strong>docs:</strong> updated language to be professional and future-proof</li>
+<li><strong>style:</strong> removed hostile/vulgar terminology</li>
+<li><strong>build:</strong> fixed missing font asset in theme</li>
+<li><strong>deploy:</strong> cleaned up github pages history</li>
+</ul>
 <h2 id="001---2026-01-16"><a class="header" href="#001---2026-01-16">[0.0.1] - 2026-01-16</a></h2>
 <h3 id="added"><a class="header" href="#added">added</a></h3>
 <ul>
@@ -754,7 +762,7 @@ use at your own risk. if it breaks, that’s on you.</p>
 <h2 id="design-choices"><a class="header" href="#design-choices">design choices</a></h2>
 <h3 id="lowercase-everything"><a class="header" href="#lowercase-everything">lowercase everything</a></h3>
 <p><strong>decision:</strong> all lowercase.
-<strong>why:</strong> agents are dumb. casing is ambiguous. we removed the ambiguity.</p>
+<strong>why:</strong> agents struggle with ambiguity. we removed the choice.</p>
 <h3 id="no-garbage-collection-1"><a class="header" href="#no-garbage-collection-1">no garbage collection</a></h3>
 <p><strong>decision:</strong> stack only.
 <strong>why:</strong> speed. determinism. simplicity.</p>

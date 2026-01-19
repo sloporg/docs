@@ -27,7 +27,7 @@ fn calculate(x u64) u64
 
 ### implicit return
 
-typing `ret` at the end is redundant. don't do it.
+typing `ret` at the end is unnecessary. concise code is preferred.
 
 ```slop
 fn add(a u64, b u64) u64

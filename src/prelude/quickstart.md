@@ -27,7 +27,7 @@ create a file called `main.sl`:
 arch amd64 0.0.1
 
 fn main()
-  print "agents write better code than you"
+  print "agents write reliable code"
 ```
 
 compile and run:
@@ -35,7 +35,7 @@ compile and run:
 ```bash
 slopc main.sl -o main
 ./main
-# output: agents write better code than you
+# output: agents write reliable code
 ```
 
 ---

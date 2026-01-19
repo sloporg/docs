@@ -4,6 +4,15 @@
 
 ---
 
+## [0.0.1-dev.2] - 2026-01-19
+
+### refined
+
+- **docs:** updated language to be professional and future-proof
+- **style:** removed hostile/vulgar terminology
+- **build:** fixed missing font asset in theme
+- **deploy:** cleaned up github pages history
+
 ## [0.0.1] - 2026-01-16
 
 ### added

@@ -21,7 +21,7 @@ a single `.sl` file. compilation unit.
 ### lowercase everything
 
 **decision:** all lowercase.
-**why:** agents are dumb. casing is ambiguous. we removed the ambiguity.
+**why:** agents struggle with ambiguity. we removed the choice.
 
 ### no garbage collection
 

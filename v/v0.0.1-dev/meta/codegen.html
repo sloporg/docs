@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>0x0302 comparison - slop docs</title>
+        <title>0x0303 codegen - slop docs</title>
 
 
         <!-- Custom HTML head -->
@@ -178,50 +178,75 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="comparison"><a class="header" href="#comparison">comparison</a></h1>
-<p><strong>slop vs the world.</strong></p>
+                        <h1 id="implementation"><a class="header" href="#implementation">implementation</a></h1>
+<p><strong>bootstrap strategy using llvm.</strong></p>
+<p>since we don’t have a working slop compiler yet, we write the first one in rust (<code>sloprsc</code>).
+it parses slop code and generates llvm ir.</p>
 <hr>
-<h2 id="slop-vs-rust"><a class="header" href="#slop-vs-rust">slop vs rust</a></h2>
-<p><strong>rust:</strong> complex borrow checker. lifetime annotations everywhere. long compile times.
-<strong>slop:</strong> stack focused. copy semantics by default. fast compilation. simpler mental model.</p>
+<h2 id="architecture"><a class="header" href="#architecture">architecture</a></h2>
+<ol>
+<li><strong>lexer</strong> - source text -&gt; tokens (strict lowercase, indent/dedent)</li>
+<li><strong>parser</strong> - tokens -&gt; ast (pratt parsing)</li>
+<li><strong>codegen</strong> - ast -&gt; llvm ir (using <code>inkwell</code> or <code>llvm-sys</code>)</li>
+<li><strong>link</strong> - llvm ir -&gt; executable (using <code>clang</code> or <code>llc</code>)</li>
+</ol>
 <hr>
-<h2 id="slop-vs-go"><a class="header" href="#slop-vs-go">slop vs go</a></h2>
-<p><strong>go:</strong> explicit error checks everywhere. garbage collector pauses.
-<strong>slop:</strong> no gc pauses. predictable performance. panic-on-error (current epoch).</p>
+<h2 id="llvm-codegen-steps"><a class="header" href="#llvm-codegen-steps">llvm codegen steps</a></h2>
+<h3 id="1-setup"><a class="header" href="#1-setup">1. setup</a></h3>
+<p>initialize the llvm context, module, and builder.</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let context = Context::create();
+let module = context.create_module("slop_module");
+let builder = context.create_builder();
+<span class="boring">}</span></code></pre>
+<h3 id="2-types"><a class="header" href="#2-types">2. types</a></h3>
+<p>map slop types to llvm types.</p>
+<ul>
+<li><code>u64</code> -&gt; <code>context.i64_type()</code></li>
+<li><code>bool</code> -&gt; <code>context.bool_type()</code> (i1)</li>
+<li><code>str</code> -&gt; <code>context.i8_type().ptr_type(AddressSpace::Generic)</code> (c-string or struct)</li>
+</ul>
+<h3 id="3-functions"><a class="header" href="#3-functions">3. functions</a></h3>
+<p>for each function in ast:</p>
+<ol>
+<li>define function type (param types -&gt; return type).</li>
+<li>add function to module.</li>
+<li>create entry basic block.</li>
+<li>position builder at entry.</li>
+</ol>
+<h3 id="4-stack-allocation"><a class="header" href="#4-stack-allocation">4. stack allocation</a></h3>
+<p>slop is <strong>stack-only</strong>. for every variable assignment:</p>
+<ol>
+<li>create an <code>alloca</code> instruction in the entry block.</li>
+<li>store value using <code>build_store</code>.</li>
+<li>load value using <code>build_load</code> when referenced.</li>
+</ol>
+<h3 id="5-control-flow"><a class="header" href="#5-control-flow">5. control flow</a></h3>
+<p>translate <code>if/else</code> and <code>while</code>:</p>
+<ol>
+<li>create basic blocks: <code>then_bb</code>, <code>else_bb</code>, <code>merge_bb</code>.</li>
+<li>build condition expression (i1).</li>
+<li><code>build_cond_br(condition, then_bb, else_bb)</code>.</li>
+<li>populate blocks.</li>
+<li><code>build_br(merge_bb)</code> at end of branches.</li>
+</ol>
 <hr>
-<h2 id="slop-vs-python"><a class="header" href="#slop-vs-python">slop vs python</a></h2>
-<p><strong>python:</strong> inconsistent casing. mixed indentation. slow execution.
-<strong>slop:</strong> strict lowercase. strict indentation. high performance.</p>
-<hr>
-<h2 id="slop-vs-c"><a class="header" href="#slop-vs-c">slop vs c</a></h2>
-<p><strong>c:</strong> segfaults. buffer overflows. undefined behavior.
-<strong>slop:</strong> defined behavior. strict structure. safer defaults.</p>
-<hr>
-<h2 id="summary"><a class="header" href="#summary">summary</a></h2>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>feature</th><th>slop</th><th>rust</th><th>go</th><th>python</th></tr>
-</thead>
-<tbody>
-<tr><td><strong>memory</strong></td><td>stack (copy)</td><td>ownership</td><td>gc</td><td>gc</td></tr>
-<tr><td><strong>speed</strong></td><td>fast</td><td>fast</td><td>fast</td><td>slow</td></tr>
-<tr><td><strong>casing</strong></td><td>strict</td><td>mixed</td><td>mixed</td><td>mixed</td></tr>
-<tr><td><strong>indent</strong></td><td>strict</td><td>mixed</td><td>mixed</td><td>strict</td></tr>
-<tr><td><strong>vibes</strong></td><td>disciplined</td><td>complex</td><td>pragmatic</td><td>flexible</td></tr>
-</tbody>
-</table>
-</div>
+<h2 id="reference"><a class="header" href="#reference">reference</a></h2>
+<ul>
+<li><strong>llvm language reference:</strong> <a href="https://llvm.org/docs/LangRef.html">llvm.org/docs/LangRef.html</a></li>
+<li><strong>inkwell (rust bindings):</strong> <a href="https://github.com/TheDan64/inkwell">github.com/TheDan64/inkwell</a></li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../meta/changelog.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../meta/comparison.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../meta/codegen.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../meta/references.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -231,11 +256,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../meta/changelog.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../meta/comparison.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../meta/codegen.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../meta/references.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>

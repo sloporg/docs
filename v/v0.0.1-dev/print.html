@@ -37,10 +37,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-bde877d9.js";
+            window.path_to_searchindex_js = "searchindex-cd20fcf9.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-996d0811.js"></script>
+        <script src="toc-35374d75.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -278,18 +278,16 @@ fn main()
 <p>inspired by: rust (ownership), zig (simplicity), go (methods), python (indent)</p>
 <hr>
 <h2 id="roadmap"><a class="header" href="#roadmap">roadmap</a></h2>
-<p><strong>v0.0.1 (now)</strong> - bootstrap compiler (<code>sloprsc</code>) written in rust. relies on llvm for code generation.
+<p><strong>v0.0.1 (current)</strong> - bootstrap compiler (<code>sloprsc</code>) written in rust. relies on llvm for code generation. <a href="#implementation">implementation details</a>.
 <strong>future</strong> - self-hosting compiler (<code>slopc</code>) written in slop. no llvm dependency. pure slop.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="quickstart"><a class="header" href="#quickstart">quickstart</a></h1>
 <p>your first slop program</p>
 <hr>
 <h2 id="installation"><a class="header" href="#installation">installation</a></h2>
-<pre><code class="language-bash"># download bootstrap compiler (sloprsc)
-curl -l https://github.com/sloporg/sloprsc/releases/latest/download/sloprsc-darwin-arm64 -o slopc
+<pre><code class="language-bash">curl -l https://github.com/sloporg/sloprsc/releases/latest/download/sloprsc-darwin-arm64 -o slopc
 chmod +x slopc
 
-# or build from source (requires rust &amp; llvm)
 git clone https://github.com/sloporg/sloprsc
 cd sloprsc
 cargo build --release
@@ -746,6 +744,66 @@ use at your own risk. if it breaks, that’s on you.</p>
 </tbody>
 </table>
 </div>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="implementation"><a class="header" href="#implementation">implementation</a></h1>
+<p><strong>bootstrap strategy using llvm.</strong></p>
+<p>since we don’t have a working slop compiler yet, we write the first one in rust (<code>sloprsc</code>).
+it parses slop code and generates llvm ir.</p>
+<hr>
+<h2 id="architecture"><a class="header" href="#architecture">architecture</a></h2>
+<ol>
+<li><strong>lexer</strong> - source text -&gt; tokens (strict lowercase, indent/dedent)</li>
+<li><strong>parser</strong> - tokens -&gt; ast (pratt parsing)</li>
+<li><strong>codegen</strong> - ast -&gt; llvm ir (using <code>inkwell</code> or <code>llvm-sys</code>)</li>
+<li><strong>link</strong> - llvm ir -&gt; executable (using <code>clang</code> or <code>llc</code>)</li>
+</ol>
+<hr>
+<h2 id="llvm-codegen-steps"><a class="header" href="#llvm-codegen-steps">llvm codegen steps</a></h2>
+<h3 id="1-setup"><a class="header" href="#1-setup">1. setup</a></h3>
+<p>initialize the llvm context, module, and builder.</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let context = Context::create();
+let module = context.create_module("slop_module");
+let builder = context.create_builder();
+<span class="boring">}</span></code></pre>
+<h3 id="2-types"><a class="header" href="#2-types">2. types</a></h3>
+<p>map slop types to llvm types.</p>
+<ul>
+<li><code>u64</code> -&gt; <code>context.i64_type()</code></li>
+<li><code>bool</code> -&gt; <code>context.bool_type()</code> (i1)</li>
+<li><code>str</code> -&gt; <code>context.i8_type().ptr_type(AddressSpace::Generic)</code> (c-string or struct)</li>
+</ul>
+<h3 id="3-functions"><a class="header" href="#3-functions">3. functions</a></h3>
+<p>for each function in ast:</p>
+<ol>
+<li>define function type (param types -&gt; return type).</li>
+<li>add function to module.</li>
+<li>create entry basic block.</li>
+<li>position builder at entry.</li>
+</ol>
+<h3 id="4-stack-allocation"><a class="header" href="#4-stack-allocation">4. stack allocation</a></h3>
+<p>slop is <strong>stack-only</strong>. for every variable assignment:</p>
+<ol>
+<li>create an <code>alloca</code> instruction in the entry block.</li>
+<li>store value using <code>build_store</code>.</li>
+<li>load value using <code>build_load</code> when referenced.</li>
+</ol>
+<h3 id="5-control-flow"><a class="header" href="#5-control-flow">5. control flow</a></h3>
+<p>translate <code>if/else</code> and <code>while</code>:</p>
+<ol>
+<li>create basic blocks: <code>then_bb</code>, <code>else_bb</code>, <code>merge_bb</code>.</li>
+<li>build condition expression (i1).</li>
+<li><code>build_cond_br(condition, then_bb, else_bb)</code>.</li>
+<li>populate blocks.</li>
+<li><code>build_br(merge_bb)</code> at end of branches.</li>
+</ol>
+<hr>
+<h2 id="reference"><a class="header" href="#reference">reference</a></h2>
+<ul>
+<li><strong>llvm language reference:</strong> <a href="https://llvm.org/docs/LangRef.html">llvm.org/docs/LangRef.html</a></li>
+<li><strong>inkwell (rust bindings):</strong> <a href="https://github.com/TheDan64/inkwell">github.com/TheDan64/inkwell</a></li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="references"><a class="header" href="#references">references</a></h1>
 <p><strong>terms you need to know.</strong></p>

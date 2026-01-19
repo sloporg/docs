@@ -36,10 +36,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-bde877d9.js";
+            window.path_to_searchindex_js = "../searchindex-cd20fcf9.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-996d0811.js"></script>
+        <script src="../toc-35374d75.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -182,11 +182,9 @@
 <p>your first slop program</p>
 <hr>
 <h2 id="installation"><a class="header" href="#installation">installation</a></h2>
-<pre><code class="language-bash"># download bootstrap compiler (sloprsc)
-curl -l https://github.com/sloporg/sloprsc/releases/latest/download/sloprsc-darwin-arm64 -o slopc
+<pre><code class="language-bash">curl -l https://github.com/sloporg/sloprsc/releases/latest/download/sloprsc-darwin-arm64 -o slopc
 chmod +x slopc
 
-# or build from source (requires rust &amp; llvm)
 git clone https://github.com/sloporg/sloprsc
 cd sloprsc
 cargo build --release

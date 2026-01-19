@@ -36,7 +36,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-3f5b88fa.js";
+            window.path_to_searchindex_js = "../searchindex-0fe0ba9d.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-66c34e75.js"></script>
@@ -176,103 +176,87 @@
                 <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="conventions"><a class="header" href="#conventions">conventions</a></h1>
-<p>slop documentation and coding standards</p>
+<p><strong>how to not get yelled at by the compiler.</strong></p>
 <hr>
-<h2 id="code-conventions"><a class="header" href="#code-conventions">code conventions</a></h2>
-<h3 id="naming-rules"><a class="header" href="#naming-rules">naming rules</a></h3>
-<p><strong>variables:</strong></p>
+<h2 id="naming"><a class="header" href="#naming">naming</a></h2>
+<h3 id="variables"><a class="header" href="#variables">variables</a></h3>
+<p>lowercase only. snake_case if you must.</p>
 <ul>
-<li>lowercase only (<code>count</code>, <code>username</code>, <code>data</code>)</li>
-<li>no camelcase, no pascalcase, no caps</li>
-<li>underscores allowed for clarity (<code>user_count</code>, <code>max_retries</code>)</li>
+<li><code>count</code> (good)</li>
+<li><code>user_name</code> (fine)</li>
+<li><code>userName</code> (compiler error)</li>
+<li><code>UserName</code> (jail)</li>
 </ul>
-<p><strong>functions:</strong></p>
+<h3 id="functions"><a class="header" href="#functions">functions</a></h3>
+<p>lowercase. avoid underscores if possible. keep it simple.</p>
 <ul>
-<li>lowercase only (<code>calculate</code>, <code>parse</code>, <code>validate</code>)</li>
-<li>no underscores preferred (<code>readfile</code> not <code>read_file</code>)</li>
+<li><code>calculate</code> (good)</li>
+<li><code>readfile</code> (better than <code>read_file</code>)</li>
 </ul>
-<p><strong>files:</strong></p>
+<h3 id="files"><a class="header" href="#files">files</a></h3>
+<p>lowercase. always <code>.sl</code>.</p>
 <ul>
-<li>lowercase only (<code>main.sl</code>, <code>math.sl</code>)</li>
-<li>extension: always <code>.sl</code></li>
-</ul>
-<hr>
-<h3 id="capitalization"><a class="header" href="#capitalization">capitalization</a></h3>
-<p><strong>zero capitals allowed:</strong></p>
-<ul>
-<li>no caps in identifiers: <code>username</code> not <code>userName</code></li>
-<li>no acronym caps: <code>httpserver</code> not <code>HTTPServer</code></li>
-<li>no constant caps: <code>max_size</code> not <code>MAX_SIZE</code></li>
-</ul>
-<p><strong>only lowercase:</strong></p>
-<ul>
-<li>everything in <code>.sl</code> files must be lowercase</li>
-<li>this prevents agent hallucinations (camelcase vs snake_case)</li>
-<li>one correct way = zero ambiguity</li>
+<li><code>main.sl</code></li>
+<li><code>math.sl</code></li>
 </ul>
 <hr>
-<h3 id="formatting"><a class="header" href="#formatting">formatting</a></h3>
-<p><strong>indentation:</strong></p>
+<h2 id="no-caps-allowed"><a class="header" href="#no-caps-allowed">no caps allowed</a></h2>
+<p><strong>zero capitals.</strong></p>
 <ul>
-<li>2 spaces per level</li>
-<li>no tabs</li>
+<li>identifiers: <code>username</code> not <code>userName</code></li>
+<li>acronyms: <code>httpserver</code> not <code>HTTPServer</code></li>
+<li>constants: <code>max_size</code> not <code>MAX_SIZE</code></li>
 </ul>
-<p><strong>spacing:</strong></p>
+<p><strong>why?</strong>
+agents hallucinate casing. <code>camelCase</code> vs <code>snake_case</code> is a waste of tokens. we removed the choice.</p>
+<hr>
+<h2 id="formatting"><a class="header" href="#formatting">formatting</a></h2>
+<h3 id="indent-or-die"><a class="header" href="#indent-or-die">indent or die</a></h3>
 <ul>
-<li>spaces around operators: <code>x + y</code> not <code>x+y</code></li>
-<li>space after comma: <code>fn(a, b)</code> not <code>fn(a,b)</code></li>
+<li><strong>2 spaces</strong> strictly.</li>
+<li>tabs? error.</li>
+<li>4 spaces? error.</li>
+<li>mixed? straight to jail.</li>
+</ul>
+<h3 id="spacing"><a class="header" href="#spacing">spacing</a></h3>
+<ul>
+<li>space around operators: <code>x + y</code></li>
+<li>space after comma: <code>fn(a, b)</code></li>
 </ul>
 <hr>
-<h3 id="strings"><a class="header" href="#strings">strings</a></h3>
-<p><strong>quotes:</strong></p>
+<h2 id="strings"><a class="header" href="#strings">strings</a></h2>
+<p><strong>double quotes only.</strong></p>
 <ul>
-<li>double quotes always: <code>"hello"</code> not <code>'hello'</code></li>
+<li><code>"hello"</code> (good)</li>
+<li><code>'hello'</code> (error)</li>
 </ul>
 <hr>
-<h3 id="comments"><a class="header" href="#comments">comments</a></h3>
-<p><strong>single line:</strong></p>
+<h2 id="comments"><a class="header" href="#comments">comments</a></h2>
+<p><strong>single line only.</strong></p>
 <ul>
-<li><code>#</code> for single line comments</li>
-<li>space after hash: <code># this is a comment</code></li>
-<li><strong>vertical alignment:</strong> align comments in blocks of code for readability</li>
+<li><code>#</code> starts a comment</li>
+<li>space after hash required: <code># good</code></li>
+<li>align them vertically or look sloppy</li>
 </ul>
-<pre><code class="language-slop">x = 10       # aligned
-y = 20       # aligned
+<pre><code class="language-slop">x = 10                           # aligned
+y = 20                           # looks pro
 </code></pre>
 <hr>
-<h2 id="terminology"><a class="header" href="#terminology">terminology</a></h2>
-<h3 id="og"><a class="header" href="#og">og</a></h3>
-<p><strong>definition:</strong> built-in types that come with slop</p>
-<p><strong>og:</strong></p>
+<h2 id="og"><a class="header" href="#og">og</a></h2>
+<p><strong>built-in types.</strong></p>
 <ul>
 <li>integers: <code>u64</code></li>
 <li>logic: <code>bool</code></li>
 <li>text: <code>str</code></li>
 </ul>
 <hr>
-<h2 id="file-organization"><a class="header" href="#file-organization">file organization</a></h2>
-<h3 id="file-structure-order"><a class="header" href="#file-structure-order">file structure order</a></h3>
-<p>compiler enforces this order in every <code>.sl</code> chunk:</p>
+<h2 id="file-structure"><a class="header" href="#file-structure">file structure</a></h2>
+<p><strong>order is enforced.</strong> don’t get creative.</p>
 <ul>
 <li><strong>header:</strong> <code>arch &lt;system&gt; &lt;version&gt;</code></li>
 <li><strong>constants:</strong> <code>const name type = value</code></li>
 <li><strong>functions:</strong> <code>fn name()</code></li>
-<li><strong>main:</strong> <code>fn main()</code> (required last if exists)</li>
-</ul>
-<hr>
-<h2 id="documentation-conventions"><a class="header" href="#documentation-conventions">documentation conventions</a></h2>
-<h3 id="section-headers"><a class="header" href="#section-headers">section headers</a></h3>
-<p><strong>all lowercase:</strong></p>
-<ul>
-<li><code># slop</code> not <code># Slop</code></li>
-<li><code>## error handling</code> not <code>## Error Handling</code></li>
-</ul>
-<h3 id="writing-style"><a class="header" href="#writing-style">writing style</a></h3>
-<p><strong>lowercase everything:</strong></p>
-<ul>
-<li>headers: <code>## error handling</code></li>
-<li>sentences: “slop uses…”</li>
-<li>acronyms: “jsonl format”</li>
+<li><strong>main:</strong> <code>fn main()</code> (must be last)</li>
 </ul>
 
                     </main>

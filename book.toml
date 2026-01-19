@@ -8,4 +8,3 @@ src = "src"
 additional-css = ["theme/custom.css"]
 no-section-label = true
 git-repository-url = "https://github.com/sloporg/docs"
-git-repository-icon = "fa-github"

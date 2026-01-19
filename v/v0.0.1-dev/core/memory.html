@@ -36,7 +36,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-6b6c7699.js";
+            window.path_to_searchindex_js = "../searchindex-9a1cd6f5.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-a5cfa9c5.js"></script>
@@ -176,42 +176,42 @@
                 <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="memory"><a class="header" href="#memory">memory</a></h1>
-<p>memory management in slop v0.0.1 (stack-only)</p>
+<p><strong>stack only. heap is for people who like memory leaks.</strong></p>
 <hr>
 <h2 id="no-garbage-collection"><a class="header" href="#no-garbage-collection">no garbage collection</a></h2>
-<p>slop uses strict stack allocation in v0.0.1.</p>
-<p><strong>rationale:</strong></p>
+<p><strong>gc is a skill issue.</strong></p>
+<p>slop v0.0.1 uses strict stack allocation. if you need a heap, go use java and enjoy your 100ms pause.</p>
+<p><strong>why?</strong></p>
 <ul>
-<li>predictable performance (no gc pauses)</li>
-<li>smaller runtime (zero overhead)</li>
-<li>deterministic resource cleanup</li>
+<li><strong>zero overhead</strong> - fast as fuck</li>
+<li><strong>deterministic</strong> - no “stop the world” surprises</li>
+<li><strong>simple</strong> - what you see is what you alloc</li>
 </ul>
 <hr>
 <h2 id="memory-model"><a class="header" href="#memory-model">memory model</a></h2>
 <h3 id="stack-allocated"><a class="header" href="#stack-allocated">stack-allocated</a></h3>
-<p>all types in v0.0.1 are stack-allocated:</p>
+<p>everything lives on the stack. everything dies when the function ends.</p>
 <ul>
-<li>integers: <code>u64</code></li>
-<li>boolean: <code>bool</code></li>
-<li>string literals: <code>str</code> (stored in read-only data segment, referenced by pointer on stack)</li>
+<li><strong>u64</strong> - 8 bytes of pure number</li>
+<li><strong>bool</strong> - 1 byte of truth</li>
+<li><strong>str</strong> - pointer to read-only data (don’t worry about it)</li>
 </ul>
 <p><strong>behavior:</strong></p>
 <ul>
-<li>allocated on function entry</li>
-<li>deallocated on function exit</li>
-<li>no explicit cleanup needed</li>
-<li>copy semantics (value copied on assignment)</li>
+<li>enter function -&gt; alloc</li>
+<li>exit function -&gt; destroy</li>
+<li>forgot to free? impossible. compiler did it for you.</li>
 </ul>
 <h3 id="copy-semantics"><a class="header" href="#copy-semantics">copy semantics</a></h3>
-<p>stack types copy on assignment:</p>
-<pre><code class="language-slop">a = 42
-b = a      # a copied to b, a still valid
-print a    # ok
-print b    # ok
+<p>everything is copied. ownership is for v0.2.</p>
+<pre><code class="language-slop">a = 67
+b = a                            # b is a clone. a doesn't care.
+print a                          # still alive
+print b                          # also alive
 </code></pre>
 <hr>
 <h2 id="future"><a class="header" href="#future">future</a></h2>
-<p>heap allocation and manual memory management (<code>rekt</code>) are planned for future epochs (v0.1.0+).</p>
+<p>heap allocation and manual memory management (<code>rekt</code>) are coming when we feel like it.</p>
 
                     </main>
 

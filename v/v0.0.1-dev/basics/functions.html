@@ -36,7 +36,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-6b6c7699.js";
+            window.path_to_searchindex_js = "../searchindex-9a1cd6f5.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-a5cfa9c5.js"></script>
@@ -176,7 +176,7 @@
                 <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="functions"><a class="header" href="#functions">functions</a></h1>
-<p>functions in slop</p>
+<p><strong>inputs go in. values come out.</strong></p>
 <hr>
 <h2 id="user-functions"><a class="header" href="#user-functions">user functions</a></h2>
 <h3 id="definition"><a class="header" href="#definition">definition</a></h3>
@@ -185,12 +185,14 @@
   # last line is implicit return
 </code></pre>
 <h3 id="explicit-return"><a class="header" href="#explicit-return">explicit return</a></h3>
+<p>use <code>ret</code> if you must leave early.</p>
 <pre><code class="language-slop">fn calculate(x u64) u64
   if x &gt; 100
     ret 100                      # explicit return
   x                              # implicit return
 </code></pre>
 <h3 id="implicit-return"><a class="header" href="#implicit-return">implicit return</a></h3>
+<p>typing <code>ret</code> at the end is redundant. don’t do it.</p>
 <pre><code class="language-slop">fn add(a u64, b u64) u64
   a + b
 </code></pre>
@@ -199,14 +201,15 @@
 </code></pre>
 <hr>
 <h2 id="lit-functions"><a class="header" href="#lit-functions">lit functions</a></h2>
-<p>special built-in functions:</p>
+<p><strong>built-in tools.</strong></p>
 <h3 id="print"><a class="header" href="#print">print</a></h3>
+<p>outputs text to stdout. groundbreaking stuff.</p>
 <pre><code class="language-slop">print "compiler said no"
 print x
 </code></pre>
-<p><strong>output:</strong> stdout</p>
 <hr>
 <h2 id="recursion"><a class="header" href="#recursion">recursion</a></h2>
+<p>yes, we have recursion. don’t blow the stack.</p>
 <pre><code class="language-slop">fn factorial(n u64) u64
   if n &lt;= 1
     1

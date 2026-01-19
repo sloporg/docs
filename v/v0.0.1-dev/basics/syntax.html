@@ -36,7 +36,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-6b6c7699.js";
+            window.path_to_searchindex_js = "../searchindex-9a1cd6f5.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-a5cfa9c5.js"></script>
@@ -176,10 +176,10 @@
                 <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="syntax"><a class="header" href="#syntax">syntax</a></h1>
-<p>slop grammar and syntax</p>
+<p><strong>learn the rules or get out.</strong></p>
 <hr>
-<h2 id="file-structure"><a class="header" href="#file-structure">file structure</a></h2>
-<p>compiler enforces this order in every <code>.sl</code> chunk:</p>
+<h2 id="the-law-file-structure"><a class="header" href="#the-law-file-structure">the law (file structure)</a></h2>
+<p>compiler enforces this order. deviation is treason.</p>
 <ul>
 <li><strong>header:</strong> <code>arch &lt;system&gt; &lt;version&gt;</code></li>
 <li><strong>constants:</strong> <code>const name type = value</code></li>
@@ -200,13 +200,11 @@ fn main()
 </code></pre>
 <hr>
 <h2 id="indentation"><a class="header" href="#indentation">indentation</a></h2>
-<ul>
-<li><strong>strict 2 spaces</strong> - no tabs, no mixed indent</li>
-<li>block structure defined by whitespace</li>
-</ul>
+<p><strong>2 spaces. strict.</strong>
+tabs? error. 4 spaces? error. 3 spaces? psychopath.</p>
 <hr>
 <h2 id="comments"><a class="header" href="#comments">comments</a></h2>
-<pre><code class="language-slop"># single line comment
+<pre><code class="language-slop"># one line only. keep it brief.
 </code></pre>
 <hr>
 <h2 id="literals"><a class="header" href="#literals">literals</a></h2>
@@ -222,52 +220,30 @@ nay
 </code></pre>
 <hr>
 <h2 id="operators"><a class="header" href="#operators">operators</a></h2>
-<h3 id="math"><a class="header" href="#math">math</a></h3>
-<ul>
-<li><code>+</code> - addition</li>
-<li><code>-</code> - subtraction</li>
-<li><code>*</code> - multiplication</li>
-<li><code>/</code> - division</li>
-<li><code>%</code> - remainder</li>
-</ul>
-<h3 id="comparison"><a class="header" href="#comparison">comparison</a></h3>
-<ul>
-<li><code>==</code> - equal</li>
-<li><code>!=</code> - not equal</li>
-<li><code>&lt;</code> - less than</li>
-<li><code>&gt;</code> - greater than</li>
-<li><code>&lt;=</code> - less or equal</li>
-<li><code>&gt;=</code> - greater or equal</li>
-</ul>
-<h3 id="logical"><a class="header" href="#logical">logical</a></h3>
-<ul>
-<li><code>&amp;&amp;</code> - and</li>
-<li><code>||</code> - or</li>
-<li><code>!</code> - not</li>
-</ul>
+<p><strong>math:</strong> <code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>%</code>
+<strong>compare:</strong> <code>==</code> <code>!=</code> <code>&lt;</code> <code>&gt;</code> <code>&lt;=</code> <code>&gt;=</code>
+<strong>logic:</strong> <code>&amp;&amp;</code> <code>||</code> <code>!</code></p>
 <hr>
 <h2 id="control-flow"><a class="header" href="#control-flow">control flow</a></h2>
 <h3 id="ifelse"><a class="header" href="#ifelse">if/else</a></h3>
 <pre><code class="language-slop">if condition
-  # if block
+  # do thing
 else
-  # else block
+  # do other thing
 </code></pre>
 <h3 id="while"><a class="header" href="#while">while</a></h3>
 <pre><code class="language-slop">while condition
-  # loop body
+  # loop forever
 </code></pre>
 <hr>
 <h2 id="functions"><a class="header" href="#functions">functions</a></h2>
 <pre><code class="language-slop">fn add(a u64, b u64) u64
   a + b
 </code></pre>
-<ul>
-<li>implicit return of last expression</li>
-<li>explicit <code>ret</code> allowed</li>
-</ul>
+<p><strong>implicit return:</strong> last line returns. typing <code>ret</code> is extra work.</p>
 <hr>
 <h2 id="reserved-keywords"><a class="header" href="#reserved-keywords">reserved keywords</a></h2>
+<p>don’t name your variables these.</p>
 <ul>
 <li><code>arch</code>, <code>const</code></li>
 <li><code>fn</code>, <code>ret</code></li>

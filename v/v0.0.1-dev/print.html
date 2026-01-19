@@ -1,0 +1,1442 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>slop docs</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-2459343d.css">
+        <link rel="stylesheet" href="css/chrome-ae938929.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/custom-295c95de.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-4c533d6b.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-66c34e75.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">slop docs</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="slop"><a class="header" href="#slop">slop</a></h1>
+<p><strong>agents write your code. slop makes sure they get it right.</strong></p>
+<hr>
+<h2 id="the-problem"><a class="header" href="#the-problem">the problem</a></h2>
+<p><strong>ai agents hallucinate. traditional languages let them.</strong></p>
+<ul>
+<li><strong>too many ways to do things</strong> - python has 4 string formats. agents pick wrong.</li>
+<li><strong>casing chaos</strong> - <code>camelCase</code>? <code>snake_case</code>? <code>PascalCase</code>? agents make stuff up.</li>
+<li><strong>gc pauses kill performance</strong> - your service freezes mid-request. users leave.</li>
+</ul>
+<p><strong>agents can’t handle flexibility:</strong></p>
+<ul>
+<li>hallucinate variable names (<code>userName</code> vs <code>user_name</code> vs <code>UserName</code>)</li>
+<li>can’t parse compiler errors (gcc output is a nightmare)</li>
+<li>write code that looks right but breaks in prod</li>
+</ul>
+<hr>
+<h2 id="slop-is-extremely-opinionated"><a class="header" href="#slop-is-extremely-opinionated">slop is extremely opinionated</a></h2>
+<p><strong>one way to do everything. compiler enforces. no exceptions.</strong></p>
+<p>slop doesn’t give you choices. slop tells you how it is.</p>
+<h3 id="no-flexibility-no-mistakes"><a class="header" href="#no-flexibility-no-mistakes">no flexibility, no mistakes</a></h3>
+<ul>
+<li><strong>strict lowercase only</strong> - <code>username</code>, never <code>userName</code>. compiler rejects anything else.</li>
+<li><strong>2-space indent only</strong> - no tabs. no 4 spaces. compiler rejects it.</li>
+<li><strong>one file structure</strong> - arch, const, fn, main. always this order. compiler enforces.</li>
+</ul>
+<h3 id="minimal-by-design"><a class="header" href="#minimal-by-design">minimal by design</a></h3>
+<ul>
+<li><strong>3 types total</strong> - u64, bool, str. that’s it for v0.0.1.</li>
+<li><strong>stack-only memory</strong> - no heap. no gc. predictable and fast.</li>
+<li><strong>explicit everything</strong> - function signatures need types. no guessing.</li>
+</ul>
+<hr>
+<h2 id="show-me-code"><a class="header" href="#show-me-code">show me code</a></h2>
+<pre><code class="language-slop">arch amd64 0.0.1
+
+const max u64 = 100
+
+fn double(x u64) u64
+  x * 2
+
+fn main()
+  result = double(21)
+  if result &gt; max
+    print "too big"
+  else
+    print "ok"
+</code></pre>
+<p><strong>what just happened:</strong></p>
+<ul>
+<li>lowercase enforced (<code>result</code>, not <code>Result</code>)</li>
+<li>2-space indent (try tabs, compiler rejects)</li>
+<li>implicit return (last expression)</li>
+<li>no semicolons (why would you)</li>
+<li>stack values (copied on assign)</li>
+</ul>
+<hr>
+<h2 id="why-slop-is-so-opinionated"><a class="header" href="#why-slop-is-so-opinionated">why slop is so opinionated</a></h2>
+<p><strong>because agents need guardrails, not freedom.</strong></p>
+<p>traditional languages optimize for human flexibility. slop optimizes for machine correctness.</p>
+<p>when there’s only one way to write something, agents can’t mess it up.</p>
+<ul>
+<li><strong>no style debates</strong> - compiler decides everything</li>
+<li><strong>no syntax variations</strong> - one correct way, period</li>
+<li><strong>no runtime surprises</strong> - stack-only, no gc, predictable</li>
+</ul>
+<p>slop doesn’t trust you to make good choices. slop makes them for you.</p>
+<hr>
+<h2 id="core-concepts-v001"><a class="header" href="#core-concepts-v001">core concepts (v0.0.1)</a></h2>
+<ul>
+<li><strong>chunk:</strong> each <code>.sl</code> file is a module</li>
+<li><strong>arch header:</strong> <code>arch amd64 0.0.1</code> - required first line, declares target and version</li>
+<li><strong>const:</strong> compile-time constants only</li>
+<li><strong>fn:</strong> functions with explicit type signatures</li>
+<li><strong>stack-only:</strong> everything on the stack, copied on assignment</li>
+<li><strong>implicit return:</strong> last expression is the return value</li>
+</ul>
+<hr>
+<h2 id="language-reference"><a class="header" href="#language-reference">language reference</a></h2>
+<ul>
+<li><a href="#quickstart">quickstart</a> - write your first program</li>
+<li><a href="#syntax">syntax</a> - the rules (non-negotiable)</li>
+<li><a href="#types">types</a> - u64, bool, str (that’s all)</li>
+<li><a href="#functions-2">functions</a> - how to define functions</li>
+<li><a href="#memory">memory</a> - stack allocation model</li>
+<li><a href="#conventions">conventions</a> - naming (enforced by compiler)</li>
+</ul>
+<hr>
+<h2 id="meta"><a class="header" href="#meta">meta</a></h2>
+<ul>
+<li><a href="#versioning">versioning</a> - dense versioning, epochs</li>
+<li><a href="#comparison-1">comparison</a> - vs rust, zig, go</li>
+<li><a href="#references-1">references</a> - sources, credits</li>
+</ul>
+<hr>
+<p><strong>epoch 1 (v0.0.1)</strong> - stack-only foundation</p>
+<p>inspired by: rust (ownership), zig (simplicity), go (methods), python (indent)</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="quickstart"><a class="header" href="#quickstart">quickstart</a></h1>
+<p>your first slop program</p>
+<hr>
+<h2 id="installation"><a class="header" href="#installation">installation</a></h2>
+<pre><code class="language-bash"># download compiler (coming soon)
+curl -l https://github.com/sloporg/sloprsc/releases/latest/download/slopc-darwin-arm64 -o slopc
+chmod +x slopc
+
+# or build from source
+git clone https://github.com/sloporg/sloprsc
+cd sloprsc
+cargo build --release
+</code></pre>
+<hr>
+<h2 id="first-program"><a class="header" href="#first-program">first program</a></h2>
+<p>create a file called <code>main.sl</code>:</p>
+<pre><code class="language-slop">arch amd64 0.0.1
+
+fn main()
+  print "agents write better code than you"
+</code></pre>
+<p>compile and run:</p>
+<pre><code class="language-bash">slopc main.sl -o main
+./main
+# output: agents write better code than you
+</code></pre>
+<hr>
+<h2 id="language-basics"><a class="header" href="#language-basics">language basics</a></h2>
+<h3 id="strict-2-space-indentation"><a class="header" href="#strict-2-space-indentation">strict 2-space indentation</a></h3>
+<pre><code class="language-slop">fn calculate(x u64, y u64) u64
+  if x &gt; y
+    ret x
+  else
+    y
+</code></pre>
+<h3 id="lowercase-only"><a class="header" href="#lowercase-only">lowercase only</a></h3>
+<pre><code class="language-slop"># valid
+myvar = 42
+user = "anon"
+
+# invalid (compile error)
+userName = "anon"                # uppercase letter
+user_name = "anon"               # underscore
+</code></pre>
+<hr>
+<h2 id="basic-types"><a class="header" href="#basic-types">basic types</a></h2>
+<h3 id="og-types"><a class="header" href="#og-types">og types</a></h3>
+<pre><code class="language-slop">count u64 = 67                   # unsigned integer
+active bool = true               # boolean
+name str = "anon"                # string literal
+</code></pre>
+<h3 id="type-inference"><a class="header" href="#type-inference">type inference</a></h3>
+<p>types are inferred from literals:</p>
+<pre><code class="language-slop">name        = "anon"             # inferred: str
+count       = 67                 # inferred: u64
+active      = true               # inferred: bool
+
+name str    = "anon"             # explicit type annotation
+</code></pre>
+<hr>
+<h2 id="functions"><a class="header" href="#functions">functions</a></h2>
+<pre><code class="language-slop">fn add(a u64, b u64) u64
+  a + b                          # implicit return
+</code></pre>
+<h3 id="calling"><a class="header" href="#calling">calling</a></h3>
+<pre><code class="language-slop">res = add(5, 3)
+print res                        # output: 8
+</code></pre>
+<hr>
+<h2 id="control-flow"><a class="header" href="#control-flow">control flow</a></h2>
+<h3 id="ifelse"><a class="header" href="#ifelse">if/else</a></h3>
+<pre><code class="language-slop">fn check(age u64)
+  if age &gt;= 18
+    print "adult"
+  else
+    print "minor"
+</code></pre>
+<h3 id="while"><a class="header" href="#while">while</a></h3>
+<pre><code class="language-slop">fn countdown(n u64)
+  while n &gt; 0
+    print n
+    n = n - 1
+</code></pre>
+<hr>
+<h2 id="next-steps"><a class="header" href="#next-steps">next steps</a></h2>
+<ul>
+<li><strong>0x0100</strong> <a href="#syntax">syntax</a> - complete grammar reference</li>
+<li><strong>0x0101</strong> <a href="#types">types</a> - type system details</li>
+<li><strong>0x0102</strong> <a href="#functions-2">functions</a> - function definitions</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="syntax"><a class="header" href="#syntax">syntax</a></h1>
+<p>slop grammar and syntax</p>
+<hr>
+<h2 id="file-structure"><a class="header" href="#file-structure">file structure</a></h2>
+<p>compiler enforces this order in every <code>.sl</code> chunk:</p>
+<ul>
+<li><strong>header:</strong> <code>arch &lt;system&gt; &lt;version&gt;</code></li>
+<li><strong>constants:</strong> <code>const name type = value</code></li>
+<li><strong>functions:</strong> <code>fn name()</code></li>
+<li><strong>main:</strong> <code>fn main()</code> (required last if exists)</li>
+</ul>
+<p><strong>example:</strong></p>
+<pre><code class="language-slop">arch amd64 0.0.1
+
+const max u64 = 100
+
+fn double(x u64) u64
+  x * 2
+
+fn main()
+  res = double(10)
+  print res
+</code></pre>
+<hr>
+<h2 id="indentation"><a class="header" href="#indentation">indentation</a></h2>
+<ul>
+<li><strong>strict 2 spaces</strong> - no tabs, no mixed indent</li>
+<li>block structure defined by whitespace</li>
+</ul>
+<hr>
+<h2 id="comments"><a class="header" href="#comments">comments</a></h2>
+<pre><code class="language-slop"># single line comment
+</code></pre>
+<hr>
+<h2 id="literals"><a class="header" href="#literals">literals</a></h2>
+<h3 id="numbers"><a class="header" href="#numbers">numbers</a></h3>
+<pre><code class="language-slop">67                               # integer (u64)
+</code></pre>
+<h3 id="strings"><a class="header" href="#strings">strings</a></h3>
+<pre><code class="language-slop">"no bugs in prod"                # string literal
+</code></pre>
+<h3 id="booleans"><a class="header" href="#booleans">booleans</a></h3>
+<pre><code class="language-slop">true
+false
+</code></pre>
+<hr>
+<h2 id="operators"><a class="header" href="#operators">operators</a></h2>
+<h3 id="math"><a class="header" href="#math">math</a></h3>
+<ul>
+<li><code>+</code> - addition</li>
+<li><code>-</code> - subtraction</li>
+<li><code>*</code> - multiplication</li>
+<li><code>/</code> - division</li>
+<li><code>%</code> - remainder</li>
+</ul>
+<h3 id="comparison"><a class="header" href="#comparison">comparison</a></h3>
+<ul>
+<li><code>==</code> - equal</li>
+<li><code>!=</code> - not equal</li>
+<li><code>&lt;</code> - less than</li>
+<li><code>&gt;</code> - greater than</li>
+<li><code>&lt;=</code> - less or equal</li>
+<li><code>&gt;=</code> - greater or equal</li>
+</ul>
+<h3 id="logical"><a class="header" href="#logical">logical</a></h3>
+<ul>
+<li><code>&amp;&amp;</code> - and</li>
+<li><code>||</code> - or</li>
+<li><code>!</code> - not</li>
+</ul>
+<hr>
+<h2 id="control-flow-1"><a class="header" href="#control-flow-1">control flow</a></h2>
+<h3 id="ifelse-1"><a class="header" href="#ifelse-1">if/else</a></h3>
+<pre><code class="language-slop">if condition
+  # if block
+else
+  # else block
+</code></pre>
+<h3 id="while-1"><a class="header" href="#while-1">while</a></h3>
+<pre><code class="language-slop">while condition
+  # loop body
+</code></pre>
+<hr>
+<h2 id="functions-1"><a class="header" href="#functions-1">functions</a></h2>
+<pre><code class="language-slop">fn add(a u64, b u64) u64
+  a + b
+</code></pre>
+<ul>
+<li>implicit return of last expression</li>
+<li>explicit <code>ret</code> allowed</li>
+</ul>
+<hr>
+<h2 id="reserved-keywords"><a class="header" href="#reserved-keywords">reserved keywords</a></h2>
+<ul>
+<li><code>arch</code>, <code>const</code></li>
+<li><code>fn</code>, <code>ret</code></li>
+<li><code>if</code>, <code>else</code>, <code>while</code></li>
+<li><code>true</code>, <code>false</code></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="types"><a class="header" href="#types">types</a></h1>
+<p>slop v0.0.1 has a minimal type system focused on stack allocation.</p>
+<hr>
+<h2 id="og-types-primitives"><a class="header" href="#og-types-primitives">og types (primitives)</a></h2>
+<h3 id="u64"><a class="header" href="#u64">u64</a></h3>
+<p>unsigned 64-bit integer. the only numeric type in v0.0.1.</p>
+<pre><code class="language-slop">x u64 = 67
+y = 100                          # inferred as u64
+</code></pre>
+<p><strong>operators:</strong> <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code></p>
+<h3 id="bool"><a class="header" href="#bool">bool</a></h3>
+<p>boolean values <code>true</code> or <code>false</code>.</p>
+<pre><code class="language-slop">active bool = true
+flag = false
+</code></pre>
+<p><strong>operators:</strong> <code>&amp;&amp;</code>, <code>||</code>, <code>!</code></p>
+<h3 id="str"><a class="header" href="#str">str</a></h3>
+<p>string literals (read-only slices).</p>
+<pre><code class="language-slop">msg str = "lowercase or die"
+</code></pre>
+<hr>
+<h2 id="type-inference-1"><a class="header" href="#type-inference-1">type inference</a></h2>
+<p>compiler infers types for variable assignments:</p>
+<pre><code class="language-slop">a = 10                           # u64
+b = true                         # bool
+c = "txt"                        # str
+</code></pre>
+<p>explicit typing is required for function arguments and return types.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="functions-2"><a class="header" href="#functions-2">functions</a></h1>
+<p>functions in slop</p>
+<hr>
+<h2 id="user-functions"><a class="header" href="#user-functions">user functions</a></h2>
+<h3 id="definition"><a class="header" href="#definition">definition</a></h3>
+<pre><code class="language-slop">fn name(param1 type, param2 type) rettype
+  # function body
+  # last line is implicit return
+</code></pre>
+<h3 id="explicit-return"><a class="header" href="#explicit-return">explicit return</a></h3>
+<pre><code class="language-slop">fn calculate(x u64) u64
+  if x &gt; 100
+    ret 100                      # explicit return
+  x                              # implicit return
+</code></pre>
+<h3 id="implicit-return"><a class="header" href="#implicit-return">implicit return</a></h3>
+<pre><code class="language-slop">fn add(a u64, b u64) u64
+  a + b
+</code></pre>
+<h3 id="call"><a class="header" href="#call">call</a></h3>
+<pre><code class="language-slop">result = calculate(67)
+</code></pre>
+<hr>
+<h2 id="lit-functions"><a class="header" href="#lit-functions">lit functions</a></h2>
+<p>special built-in functions:</p>
+<h3 id="print"><a class="header" href="#print">print</a></h3>
+<pre><code class="language-slop">print "compiler said no"
+print x
+</code></pre>
+<p><strong>output:</strong> stdout</p>
+<hr>
+<h2 id="recursion"><a class="header" href="#recursion">recursion</a></h2>
+<pre><code class="language-slop">fn factorial(n u64) u64
+  if n &lt;= 1
+    1
+  else
+    n * factorial(n - 1)
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="memory"><a class="header" href="#memory">memory</a></h1>
+<p>memory management in slop v0.0.1 (stack-only)</p>
+<hr>
+<h2 id="no-garbage-collection"><a class="header" href="#no-garbage-collection">no garbage collection</a></h2>
+<p>slop uses strict stack allocation in v0.0.1.</p>
+<p><strong>rationale:</strong></p>
+<ul>
+<li>predictable performance (no gc pauses)</li>
+<li>smaller runtime (zero overhead)</li>
+<li>deterministic resource cleanup</li>
+</ul>
+<hr>
+<h2 id="memory-model"><a class="header" href="#memory-model">memory model</a></h2>
+<h3 id="stack-allocated"><a class="header" href="#stack-allocated">stack-allocated</a></h3>
+<p>all types in v0.0.1 are stack-allocated:</p>
+<ul>
+<li>integers: <code>u64</code></li>
+<li>boolean: <code>bool</code></li>
+<li>string literals: <code>str</code> (stored in read-only data segment, referenced by pointer on stack)</li>
+</ul>
+<p><strong>behavior:</strong></p>
+<ul>
+<li>allocated on function entry</li>
+<li>deallocated on function exit</li>
+<li>no explicit cleanup needed</li>
+<li>copy semantics (value copied on assignment)</li>
+</ul>
+<h3 id="copy-semantics"><a class="header" href="#copy-semantics">copy semantics</a></h3>
+<p>stack types copy on assignment:</p>
+<pre><code class="language-slop">a = 42
+b = a      # a copied to b, a still valid
+print a    # ok
+print b    # ok
+</code></pre>
+<hr>
+<h2 id="future"><a class="header" href="#future">future</a></h2>
+<p>heap allocation and manual memory management (<code>rekt</code>) are planned for future epochs (v0.1.0+).</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="conventions"><a class="header" href="#conventions">conventions</a></h1>
+<p>slop documentation and coding standards</p>
+<hr>
+<h2 id="code-conventions"><a class="header" href="#code-conventions">code conventions</a></h2>
+<h3 id="naming-rules"><a class="header" href="#naming-rules">naming rules</a></h3>
+<p><strong>variables:</strong></p>
+<ul>
+<li>lowercase only (<code>count</code>, <code>username</code>, <code>data</code>)</li>
+<li>no camelcase, no pascalcase, no caps</li>
+<li>underscores allowed for clarity (<code>user_count</code>, <code>max_retries</code>)</li>
+</ul>
+<p><strong>functions:</strong></p>
+<ul>
+<li>lowercase only (<code>calculate</code>, <code>parse</code>, <code>validate</code>)</li>
+<li>no underscores preferred (<code>readfile</code> not <code>read_file</code>)</li>
+</ul>
+<p><strong>files:</strong></p>
+<ul>
+<li>lowercase only (<code>main.sl</code>, <code>math.sl</code>)</li>
+<li>extension: always <code>.sl</code></li>
+</ul>
+<hr>
+<h3 id="capitalization"><a class="header" href="#capitalization">capitalization</a></h3>
+<p><strong>zero capitals allowed:</strong></p>
+<ul>
+<li>no caps in identifiers: <code>username</code> not <code>userName</code></li>
+<li>no acronym caps: <code>httpserver</code> not <code>HTTPServer</code></li>
+<li>no constant caps: <code>max_size</code> not <code>MAX_SIZE</code></li>
+</ul>
+<p><strong>only lowercase:</strong></p>
+<ul>
+<li>everything in <code>.sl</code> files must be lowercase</li>
+<li>this prevents agent hallucinations (camelcase vs snake_case)</li>
+<li>one correct way = zero ambiguity</li>
+</ul>
+<hr>
+<h3 id="formatting"><a class="header" href="#formatting">formatting</a></h3>
+<p><strong>indentation:</strong></p>
+<ul>
+<li>2 spaces per level</li>
+<li>no tabs</li>
+</ul>
+<p><strong>spacing:</strong></p>
+<ul>
+<li>spaces around operators: <code>x + y</code> not <code>x+y</code></li>
+<li>space after comma: <code>fn(a, b)</code> not <code>fn(a,b)</code></li>
+</ul>
+<hr>
+<h3 id="strings-1"><a class="header" href="#strings-1">strings</a></h3>
+<p><strong>quotes:</strong></p>
+<ul>
+<li>double quotes always: <code>"hello"</code> not <code>'hello'</code></li>
+</ul>
+<hr>
+<h3 id="comments-1"><a class="header" href="#comments-1">comments</a></h3>
+<p><strong>single line:</strong></p>
+<ul>
+<li><code>#</code> for single line comments</li>
+<li>space after hash: <code># this is a comment</code></li>
+</ul>
+<hr>
+<h2 id="terminology"><a class="header" href="#terminology">terminology</a></h2>
+<h3 id="og-types-1"><a class="header" href="#og-types-1">og types</a></h3>
+<p><strong>definition:</strong> built-in types that come with slop</p>
+<p><strong>og types:</strong></p>
+<ul>
+<li>integers: <code>u64</code></li>
+<li>logic: <code>bool</code></li>
+<li>text: <code>str</code></li>
+</ul>
+<hr>
+<h2 id="file-organization"><a class="header" href="#file-organization">file organization</a></h2>
+<h3 id="file-structure-order"><a class="header" href="#file-structure-order">file structure order</a></h3>
+<p>compiler enforces this order in every <code>.sl</code> chunk:</p>
+<ul>
+<li><strong>header:</strong> <code>arch &lt;system&gt; &lt;version&gt;</code></li>
+<li><strong>constants:</strong> <code>const name type = value</code></li>
+<li><strong>functions:</strong> <code>fn name()</code></li>
+<li><strong>main:</strong> <code>fn main()</code> (required last if exists)</li>
+</ul>
+<hr>
+<h2 id="documentation-conventions"><a class="header" href="#documentation-conventions">documentation conventions</a></h2>
+<h3 id="section-headers"><a class="header" href="#section-headers">section headers</a></h3>
+<p><strong>all lowercase:</strong></p>
+<ul>
+<li><code># slop</code> not <code># Slop</code></li>
+<li><code>## error handling</code> not <code>## Error Handling</code></li>
+</ul>
+<h3 id="writing-style"><a class="header" href="#writing-style">writing style</a></h3>
+<p><strong>lowercase everything:</strong></p>
+<ul>
+<li>headers: <code>## error handling</code></li>
+<li>sentences: “slop uses…”</li>
+<li>acronyms: “jsonl format”</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="versioning"><a class="header" href="#versioning">versioning</a></h1>
+<p>slop versioning strategy</p>
+<hr>
+<h2 id="philosophy"><a class="header" href="#philosophy">philosophy</a></h2>
+<p><strong>dense versioning</strong> - each release is complete, tested, and stable</p>
+<p>we do not rush to v1.0</p>
+<hr>
+<h2 id="version-scheme"><a class="header" href="#version-scheme">version scheme</a></h2>
+<p><strong>0.0.x</strong> - pre-alpha development, breaking changes expected</p>
+<p><strong>0.1.x</strong> - epoch 1 stable, patch releases</p>
+<p><strong>0.2.x</strong> - epoch 2 stable, patch releases</p>
+<p><strong>0.x.0</strong> - new epoch milestone</p>
+<p><strong>1.0.0</strong> - api frozen, production ready</p>
+<hr>
+<h2 id="epochs"><a class="header" href="#epochs">epochs</a></h2>
+<p>each epoch introduces major features and must be <strong>dense</strong> before moving forward</p>
+<h3 id="dense-means"><a class="header" href="#dense-means">dense means</a></h3>
+<ul>
+<li>all planned features complete and tested</li>
+<li>test coverage ≥ 95% for new features</li>
+<li>no critical bugs remaining</li>
+<li>documentation complete for all features</li>
+<li>real-world usage validates design</li>
+<li>feels right - no rush, take time needed</li>
+</ul>
+<hr>
+<h2 id="experimental-features"><a class="header" href="#experimental-features">experimental features</a></h2>
+<p><strong>policy:</strong></p>
+<ul>
+<li>all experimental features available with <code>--experimental</code> flag</li>
+<li>use at your own risk in production</li>
+<li>may have breaking changes between releases</li>
+<li>graduation to stable announced in changelog when promoted</li>
+</ul>
+<p><strong>graduation criteria:</strong></p>
+<ul>
+<li>feature fully tested with ≥ 95% coverage</li>
+<li>no known bugs for current release cycle</li>
+<li>feels right and ready</li>
+<li>announced in changelog when promoted</li>
+<li>included in next epoch release</li>
+</ul>
+<hr>
+<h2 id="feature-lifecycle"><a class="header" href="#feature-lifecycle">feature lifecycle</a></h2>
+<p><strong>inception</strong> - develop in feat/<code>&lt;name&gt;</code> branch</p>
+<p><strong>experimental</strong> - merge to main, available with <code>-exp</code> flag</p>
+<p><strong>stabilization</strong> - promote to stable epoch when ready, announced in changelog</p>
+<hr>
+<h2 id="release-process"><a class="header" href="#release-process">release process</a></h2>
+<h3 id="patch-releases-0xy"><a class="header" href="#patch-releases-0xy">patch releases (0.x.y)</a></h3>
+<p><strong>when:</strong> bug fixes, minor improvements, no new features</p>
+<p><strong>frequency:</strong> as needed</p>
+<p><strong>breaking changes:</strong> never</p>
+<p><strong>example:</strong> 0.1.0 → 0.1.1 (fix parser bug)</p>
+<h3 id="minor-releases-0x0"><a class="header" href="#minor-releases-0x0">minor releases (0.x.0)</a></h3>
+<p><strong>when:</strong> new epoch, major features added</p>
+<p><strong>frequency:</strong> when dense (no fixed schedule)</p>
+<p><strong>breaking changes:</strong> allowed, documented in changelog</p>
+<p><strong>example:</strong> 0.1.0 → 0.2.0 (epoch 2 data core complete)</p>
+<h3 id="major-release-100"><a class="header" href="#major-release-100">major release (1.0.0)</a></h3>
+<p><strong>when:</strong> all planned features complete, production ready</p>
+<p><strong>criteria:</strong></p>
+<ul>
+<li>epochs 1-8 complete</li>
+<li>self-hosting complete</li>
+<li>documentation complete</li>
+<li>community validation (if any)</li>
+<li>feels ready for production</li>
+</ul>
+<p><strong>guarantees after 1.0:</strong></p>
+<ul>
+<li>no breaking changes to core language</li>
+<li>experimental features can still break</li>
+<li>deprecation warnings for 2 releases before removal</li>
+</ul>
+<hr>
+<h2 id="version-header"><a class="header" href="#version-header">version header</a></h2>
+<p>all slop files declare their version:</p>
+<pre><code class="language-slop">arch \&lt;system\&gt; \&lt;version\&gt;
+</code></pre>
+<p><strong>format:</strong> <code>arch \&lt;system\&gt; \&lt;version\&gt;</code></p>
+<p><strong>version:</strong> minimum compiler version required</p>
+<p><strong>purpose:</strong></p>
+<ul>
+<li>forward compatibility checking</li>
+<li>feature gating (experimental)</li>
+<li>compilation target selection</li>
+</ul>
+<hr>
+<h2 id="backward-compatibility"><a class="header" href="#backward-compatibility">backward compatibility</a></h2>
+<p><strong>before 1.0:</strong> breaking changes allowed between epochs</p>
+<p><strong>after 1.0:</strong> no breaking changes to core language</p>
+<p><strong>experimental:</strong> can break anytime (that’s the point)</p>
+<hr>
+<h2 id="changelog"><a class="header" href="#changelog">changelog</a></h2>
+<p>all releases documented in <code>changelog.md</code>:</p>
+<p><strong>format:</strong></p>
+<pre><code class="language-markdown">## [0.2.0] - 2026-02-15
+
+### added
+- arrays, maps, tuples
+- bunch declarations
+- module system
+- tree-shaking
+
+### changed
+- improved error messages
+- faster lexer performance
+
+### fixed
+- parser bug with nested blocks
+- memory leak in string interpolation
+
+### experimental promoted to stable
+- none this release
+</code></pre>
+<hr>
+<h2 id="current-status"><a class="header" href="#current-status">current status</a></h2>
+<p><strong>version:</strong> 0.0.1</p>
+<p><strong>status:</strong> language specification complete, compiler cooking</p>
+<p><strong>next milestone:</strong> epoch 1 (v0.1.0) - basic execution and parsing complete</p>
+<hr>
+<h2 id="comparison-with-other-languages"><a class="header" href="#comparison-with-other-languages">comparison with other languages</a></h2>
+<h3 id="rust"><a class="header" href="#rust">rust</a></h3>
+<p>similar dense versioning, long road to v1.0</p>
+<h3 id="go"><a class="header" href="#go">go</a></h3>
+<p>rapid to 1.0, strong compatibility guarantee</p>
+<h3 id="python"><a class="header" href="#python">python</a></h3>
+<p>long cycles, major versions break compatibility</p>
+<h3 id="slop-approach"><a class="header" href="#slop-approach">slop approach</a></h3>
+<p>rust-style density + go-style stability post-1.0</p>
+<hr>
+<h2 id="architecture-versioning"><a class="header" href="#architecture-versioning">architecture versioning</a></h2>
+<p><strong>native architectures:</strong></p>
+<ul>
+<li><code>arch amd64 0.0.1</code> - x86-64 targets</li>
+<li><code>arch arm64 0.0.1</code> - arm64 targets</li>
+</ul>
+<p><strong>evm:</strong></p>
+<ul>
+<li><code>arch evm fusaka</code> - named hardfork</li>
+<li><code>arch evm 0.11.0</code> - version number</li>
+</ul>
+<p><strong>svm:</strong></p>
+<ul>
+<li><code>arch svm mainnet 1.18</code> - network + version</li>
+<li><code>arch svm devnet 1.18</code> - testnet + version</li>
+</ul>
+<p><strong>version starts at:</strong> 0.0.1 (not 0.1.0)</p>
+<p><strong>increment with:</strong> language features, not arch updates</p>
+<hr>
+<h2 id="self-hosting-impact"><a class="header" href="#self-hosting-impact">self-hosting impact</a></h2>
+<p><strong>epoch 5:</strong> self-hosting begins (can compile simple slop programs in slop)</p>
+<p><strong>epoch 6:</strong> self-hosting complete (rust compiler dropped)</p>
+<p><strong>after epoch 6:</strong> compiler written in slop itself, bootstrapped from previous version</p>
+<p><strong>versioning stays same:</strong> epochs continue as normal</p>
+<hr>
+<h2 id="dense-versioning-explained"><a class="header" href="#dense-versioning-explained">dense versioning explained</a></h2>
+<p>each epoch must be <strong>dense</strong> before moving forward</p>
+<p><strong>dense means:</strong></p>
+<ul>
+<li>all planned features complete and tested</li>
+<li>test coverage ≥ 95% for new features</li>
+<li>no critical bugs remaining</li>
+<li>documentation complete for all features</li>
+<li>real-world usage validates design</li>
+<li>feels right - no rush, take the time needed</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="changelog-1"><a class="header" href="#changelog-1">changelog</a></h1>
+<p>slop version history</p>
+<hr>
+<h2 id="001---2026-01-16"><a class="header" href="#001---2026-01-16">[0.0.1] - 2026-01-16</a></h2>
+<h3 id="added"><a class="header" href="#added">added</a></h3>
+<ul>
+<li>complete language specification</li>
+<li>compiler architecture documentation</li>
+<li>implementation docs structure (dev/)</li>
+<li>all feature docs (syntax, types, functions, imports, memory, errors, concurrency, std)</li>
+<li>lsp specification (neovim only)</li>
+<li>ffi specification</li>
+<li>slopbind specification</li>
+<li>evm specification</li>
+<li>versioning strategy</li>
+<li>roadmap documentation</li>
+<li>slopy single source of truth</li>
+</ul>
+<h3 id="changed"><a class="header" href="#changed">changed</a></h3>
+<ul>
+<li>renamed repository from <code>slop</code> to <code>docs</code></li>
+<li>updated all cross-references</li>
+<li>established clean git history with sloopy commits</li>
+<li>all documentation 100% lowercase</li>
+</ul>
+<h3 id="fixed"><a class="header" href="#fixed">fixed</a></h3>
+<ul>
+<li>removed all duplicate content</li>
+<li>eliminated misleading git history</li>
+<li>organized docs into single source of truth</li>
+<li>separated language specs from implementation</li>
+</ul>
+<h3 id="experimental-promoted-to-stable"><a class="header" href="#experimental-promoted-to-stable">experimental promoted to stable</a></h3>
+<ul>
+<li>none this release</li>
+</ul>
+<hr>
+<h2 id="unreleased"><a class="header" href="#unreleased">unreleased</a></h2>
+<h3 id="version-010"><a class="header" href="#version-010">version 0.1.0</a></h3>
+<p>focus: basic execution and parsing</p>
+<p>status: cooking</p>
+<p>planned features:</p>
+<ul>
+<li>lexer and parser implementation</li>
+<li>basic codegen for amd64/arm64</li>
+<li>jsonl diagnostic output</li>
+<li>real-time diagnostics via lsp</li>
+</ul>
+<hr>
+<h2 id="coming-soon"><a class="header" href="#coming-soon">coming soon</a></h2>
+<h3 id="version-020"><a class="header" href="#version-020">version 0.2.0</a></h3>
+<p>focus: data core</p>
+<p>planned features:</p>
+<ul>
+<li>all og types (u8..u256, i8..i256, f32, f64, b8..b256, bs, str, ch, bool, nah)</li>
+<li>collections (arrays, maps, tuples)</li>
+<li>bunch declarations with auto .str()</li>
+<li>bunch packing enforcement</li>
+<li>module system</li>
+<li>slop.toml for package mapping</li>
+</ul>
+<hr>
+<h3 id="version-030"><a class="header" href="#version-030">version 0.3.0</a></h3>
+<p>focus: flow core</p>
+<p>planned features:</p>
+<ul>
+<li>error handling (! operator, e reserved var, err type, yeet)</li>
+<li>automatic rekt e insertion</li>
+<li>concurrency (slug, slap, slurp, slush, cycle)</li>
+<li>rekt enforcement (linear memory)</li>
+<li>auto .str() for all types</li>
+</ul>
+<hr>
+<h3 id="version-040"><a class="header" href="#version-040">version 0.4.0</a></h3>
+<p>focus: system core</p>
+<p>planned features:</p>
+<ul>
+<li>header parsing (arch <code>&lt;system&gt;</code> <code>&lt;version&gt;</code>)</li>
+<li>asm blocks (inline assembly, target-dependent)</li>
+<li>sloppycost analysis (automatic optimization)</li>
+<li>time literals (10s, 100ms)</li>
+<li>time properties (time.iso, time.nano)</li>
+</ul>
+<hr>
+<h3 id="version-050"><a class="header" href="#version-050">version 0.5.0</a></h3>
+<p>focus: world standard</p>
+<p>planned features:</p>
+<ul>
+<li>env (args, environment variables)</li>
+<li>io (readline, readall, lines)</li>
+<li>fs (read, write, lines, existence)</li>
+<li>os (exit)</li>
+<li>net (tcp sockets)</li>
+<li>math (pi, abs, ceil, floor, mid, mean, pow, sqrt, min, max, sort)</li>
+<li>tree-shaking (unused modules purged)</li>
+<li>c ffi basics (libclang-based, slopbind tool)</li>
+<li>lsp basics (neovim only - syntax highlighting, diagnostics, auto-indent)</li>
+<li>self-hosting begins (can compile simple slop programs in slop)</li>
+</ul>
+<hr>
+<h3 id="version-060"><a class="header" href="#version-060">version 0.6.0</a></h3>
+<p>focus: domain standards</p>
+<p>planned features:</p>
+<ul>
+<li>crypto (keccak256, sha256, ed25519, secp256k1)</li>
+<li>codec (hex, base58, base64)</li>
+<li>c ffi complete (full libclang integration)</li>
+<li>evm (complete evm integration)</li>
+<li>svm (solana integration)</li>
+<li>data structures (stack, queue, tree, graph)</li>
+<li>self-hosting complete - rust compiler dropped</li>
+<li>lsp complete (go-to-definition, auto-complete, refactoring)</li>
+</ul>
+<hr>
+<h3 id="version-070"><a class="header" href="#version-070">version 0.7.0</a></h3>
+<p>focus: built-in libraries</p>
+<p>planned features:</p>
+<ul>
+<li>http (get, post, request)</li>
+<li>json (parse, stringify)</li>
+<li>yaml (parse, stringify)</li>
+<li>python ffi (embedded cpython, .pyi parsing)</li>
+</ul>
+<hr>
+<h3 id="version-080"><a class="header" href="#version-080">version 0.8.0</a></h3>
+<p>focus: external libraries</p>
+<p>planned features:</p>
+<ul>
+<li>module resolution (import by name)</li>
+<li>slop.toml dependency management</li>
+<li>git repos and local paths</li>
+<li>javascript ffi (wasm target, .d.ts parsing)</li>
+</ul>
+<hr>
+<h2 id="version-100"><a class="header" href="#version-100">version 1.0.0</a></h2>
+<p>focus: api frozen, production ready</p>
+<p>criteria:</p>
+<ul>
+<li>epochs 1-8 complete</li>
+<li>self-hosting complete</li>
+<li>documentation complete</li>
+<li>real-world usage validates</li>
+<li>feels ready for production</li>
+</ul>
+<p>guarantees:</p>
+<ul>
+<li>no breaking changes to core language</li>
+<li>experimental features can still break</li>
+<li>deprecation warnings for 2 releases before removal</li>
+</ul>
+<hr>
+<h2 id="migration-guide"><a class="header" href="#migration-guide">migration guide</a></h2>
+<h3 id="upgrading-from-0x-to-10"><a class="header" href="#upgrading-from-0x-to-10">upgrading from 0.x to 1.0</a></h3>
+<p>major breaking changes will be documented with:</p>
+<ul>
+<li>clear migration instructions</li>
+<li>deprecation timeline</li>
+<li>automated upgrade tools</li>
+</ul>
+<h3 id="experimental-features-1"><a class="header" href="#experimental-features-1">experimental features</a></h3>
+<p>features marked experimental may:</p>
+<ul>
+<li>have breaking changes between releases</li>
+<li>require no recompile when graduating to stable</li>
+<li>syntax changes will be clearly documented</li>
+</ul>
+<hr>
+<h2 id="contribution-guidelines"><a class="header" href="#contribution-guidelines">contribution guidelines</a></h2>
+<p>for contributors:</p>
+<ul>
+<li>all commits must be sloopy (lowercase only)</li>
+<li>follow dense versioning model</li>
+<li>100% test coverage for new features</li>
+<li>documentation required for all changes</li>
+<li>real-world usage before promotion</li>
+</ul>
+<hr>
+<h2 id="changelog-format"><a class="header" href="#changelog-format">changelog format</a></h2>
+<h3 id="example-entry"><a class="header" href="#example-entry">example entry</a></h3>
+<pre><code class="language-markdown">## [0.2.0] - 2026-02-15
+
+### added
+- arrays, maps, tuples
+- bunch declarations
+- module system
+
+### changed
+- improved error messages
+- faster lexer performance
+
+### fixed
+- parser bug with nested blocks
+</code></pre>
+<hr>
+<h2 id="see-also"><a class="header" href="#see-also">see also</a></h2>
+<ul>
+<li><a href="#versioning">versioning</a> - versioning strategy and dense model</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="comparison-1"><a class="header" href="#comparison-1">comparison</a></h1>
+<p>slop vs other languages</p>
+<hr>
+<h2 id="terminology-mapping"><a class="header" href="#terminology-mapping">terminology mapping</a></h2>
+<h3 id="slop--other-languages"><a class="header" href="#slop--other-languages">slop → other languages</a></h3>
+<p><strong>bunch</strong> - struct with auto .str() method</p>
+<ul>
+<li>rust: struct</li>
+<li>go: struct</li>
+<li>typescript: interface, type</li>
+<li>python: class, dataclass</li>
+<li>c++: struct, class</li>
+</ul>
+<p><strong>leak</strong> - public visibility modifier</p>
+<ul>
+<li>rust: pub</li>
+<li>go: uppercase first letter</li>
+<li>typescript: export</li>
+<li>python: no equivalent (public by convention)</li>
+<li>c++: public</li>
+</ul>
+<p><strong>mood</strong> - sum types with variants</p>
+<ul>
+<li>rust: enum</li>
+<li>swift: enum</li>
+<li>typescript: union types</li>
+<li>go: no equivalent (use constants + interfaces)</li>
+<li>c++: enum, union</li>
+<li>python: dataclass with literal types</li>
+</ul>
+<p><strong>vibe</strong> - trait/interface definitions</p>
+<ul>
+<li>rust: trait</li>
+<li>go: interface</li>
+<li>typescript: interface, type</li>
+<li>haskell: typeclass, type families</li>
+<li>c++: abstract class, pure virtual functions</li>
+<li>java: interface, abstract class</li>
+</ul>
+<p><strong>gives</strong> - implementations</p>
+<ul>
+<li>rust: impl</li>
+<li>go: interface methods</li>
+<li>typescript: implements interface</li>
+<li>haskell: instance methods</li>
+<li>java: implements</li>
+</ul>
+<p><strong>chunk</strong> - a single .sl file</p>
+<ul>
+<li>rust: module</li>
+<li>go: package/file</li>
+<li>typescript: module</li>
+<li>haskell: module</li>
+<li>c++: compilation unit (.cpp, .h)</li>
+</ul>
+<p><strong>nah</strong> - void/nothing/empty type</p>
+<ul>
+<li>rust: unit</li>
+<li>go: no return</li>
+<li>typescript: void, undefined</li>
+<li>haskell: ()</li>
+<li>c++: void</li>
+<li>python: none (returns none implicitly)</li>
+</ul>
+<p><strong>yeet</strong> - crash/abort with message</p>
+<ul>
+<li>rust: panic!</li>
+<li>go: panic</li>
+<li>typescript: throw new Error()</li>
+<li>haskell: error</li>
+<li>c++: abort()</li>
+</ul>
+<p><strong>! operator</strong> - error handling</p>
+<ul>
+<li>rust: ? operator (similar usage)</li>
+<li>go: if err != nil { return err }</li>
+<li>typescript: try/catch, throw</li>
+<li>python: try/except raise</li>
+<li>haskell: error</li>
+<li>c++: try/catch, throw</li>
+</ul>
+<p><strong>e</strong> - reserved error variable</p>
+<ul>
+<li>rust: no equivalent</li>
+<li>go: no equivalent</li>
+<li>typescript: no equivalent (catch variable)</li>
+<li>haskell: no equivalent</li>
+<li>c++: no equivalent</li>
+</ul>
+<p><strong>slug</strong> - async task handle</p>
+<ul>
+<li>rust: future<code>&lt;t&gt;</code></li>
+<li>go: chan (sync) or goroutine (async)</li>
+<li>typescript: promise</li>
+<li>javascript/typescript: promise</li>
+<li>python: asyncio.future</li>
+<li>haskellel: async mtl/async</li>
+<li>c++: std::future, coroutines</li>
+</ul>
+<p><strong>slap</strong> - spawn async task</p>
+<ul>
+<li>rust: tokio::spawn</li>
+<li>go: go func()</li>
+<li>typescript: async/await</li>
+<li>javascript: async/await</li>
+<li>python: asyncio.create_task()</li>
+<li>haskellel: async</li>
+<li>c++: std::async, coroutines</li>
+</ul>
+<p><strong>slurp</strong> - await result</p>
+<ul>
+<li>rust: .await</li>
+<li>go: &lt;-chan (no direct await)</li>
+<li>typescript: await</li>
+<li>javascript: await</li>
+<li>python: await</li>
+<li>haskellel: await m</li>
+</ul>
+<p><strong>slush</strong> - spawn + await</p>
+<ul>
+<li>rust: spawn().await</li>
+<li>go: no direct equivalent</li>
+<li>typescript: no direct equivalent</li>
+<li>javascript: no direct equivalent</li>
+<li>python: asyncio.create_task().result()</li>
+</ul>
+<p><strong>cycle</strong> - repeat at intervals</p>
+<ul>
+<li>rust: tokio::interval loop</li>
+<li>go: time.ticker</li>
+<li>typescript: setinterval</li>
+<li>python: loop with time.sleep()</li>
+<li>haskellel: loop with thread.delay()</li>
+</ul>
+<p><strong>sleep</strong> - delay execution</p>
+<ul>
+<li>rust: tokio::sleep</li>
+<li>go: time.sleep</li>
+<li>typescript: no direct equivalent (setTimeout)</li>
+<li>python: time.sleep()</li>
+<li>haskellel: thread.sleep()</li>
+</ul>
+<p><strong>rekt</strong> - free memory</p>
+<ul>
+<li>rust: drop (automatically)</li>
+<li>go: no direct equivalent (gc)</li>
+<li>typescript: no direct equivalent (gc)</li>
+<li>python: del or context manager</li>
+</ul>
+<p><strong>bunch packing</strong> - compiler optimizes layout</p>
+<ul>
+<li>rust: repr(derive) (no auto layout)</li>
+<li>go: no direct equivalent (gc)</li>
+<li>typescript: no direct equivalent</li>
+<li>haskell: no direct equivalent</li>
+<li>c++: #pragma pack (limited)</li>
+<li>python: @dataclass (no control)</li>
+</ul>
+<hr>
+<h2 id="concept-comparison"><a class="header" href="#concept-comparison">concept comparison</a></h2>
+<h3 id="error-handling"><a class="header" href="#error-handling">error handling</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>feature</th><th>slop</th><th>rust</th><th>go</th><th>typescript</th><th>python</th><th>c++</th><th>haskellel</th></tr>
+</thead>
+<tbody>
+<tr><td>try/catch</td><td>? operator + e var</td><td>? operator</td><td>panic!</td><td>if err != nil</td><td>try/catch</td><td>try/except raise</td><td>error</td></tr>
+<tr><td>result type</td><td>explicit</td><td>can return <code>nah</code></td><td>result<code>&lt;t&gt;</code></td><td>error</td><td>result<code>&lt;t&gt;</code></td><td>error</td><td>error</td></tr>
+<tr><td>cleanup</td><td>rekt required</td><td>automatic drop</td><td>automatic gc</td><td>automatic gc</td><td>automatic gc</td><td>automatic gc</td><td>automatic gc</td></tr>
+<tr><td>crash</td><td>yeet</td><td>panic!</td><td>panic!</td><td>panic!</td><td>throw new error</td><td>throw exception</td><td>os.exit(1)</td></tr>
+<tr><td>reserved var</td><td>e (error scope)</td><td>no equivalent</td><td>no equivalent</td><td>no equivalent</td><td>no equivalent</td><td>catch variable</td><td>no equivalent</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="asyncawait"><a class="header" href="#asyncawait">async/await</a></h3>
+<p>| feature | slop | rust | go | typescript | javascript | python | haskellel |
+|———|——|—–|–––––|–––––––|––––––––|———–|
+| spawn | slap | tokio::spawn | go func() | async | async/await | async/await | asyncio.create_task | async mtl/async |
+| await | slurp | .await | &lt;-chan (no direct) | .await | await | await | await | await | await mtl/await |
+| spawn+await | slush | spawn().await | no direct equivalent | no direct equivalent | no direct equivalent | asyncio.create_task().result() | no direct equivalent | no direct equivalent |
+| timer | cycle | tokio::interval | time.ticker | setinterval | settimeout | settimeout | time.sleep() | thread.sleep() | no direct equivalent |</p>
+<h3 id="ownership"><a class="header" href="#ownership">ownership</a></h3>
+<p>| feature | slop | rust | go | typescript | javascript | python | c++ | haskellel |
+|———|——|—–|–––––|–––––––|––––|——|———–|
+| move semantics | default | move | references only | move by default | references only | move by default |
+| heap cleanup | rekt required | automatic drop | automatic gc | automatic gc | automatic gc | automatic gc | raii garbage collector | deinit | defer |
+| lifetime | compiler enforces | borrow checker | no lifetime | no lifetime | no lifetime | no lifetime | borrow checker | raii lifetime |
+| copy semantics | stack types only | copy everywhere | copy everywhere | copy everywhere | copy everywhere | copy everywhere | copy everywhere |</p>
+<h3 id="types-1"><a class="header" href="#types-1">types</a></h3>
+<p>| feature | slop | rust | go | typescript | javascript | python | c++ | haskellel |
+|———|——|—–|–––––|–––––––|––––|——|———–|
+| generics | of t, k (exp) | <code>&lt;t&gt;</code> (exp) | type parameters | generics (exp) | type parameters | no type parameters | generics | no equivalent | generic wildcards | type parameters | no equivalent |
+| sum types | mood (exp) | of t, k (exp) | enum (exp) | enum (exp) | enum variants (exp) | type unions (exp) | type aliases | type aliases | type aliases | newtype (exp) | no equivalent | type aliases (exp) | | no equivalent |
+| explicit null | nah (built-in) | option (exp) | optional<code>&lt;t&gt;</code> (exp) | no equivalent | union types (exp) | no equivalent | none/null | undefined | undefined | null/nil | optional<code>&lt;t&gt;</code> (exp) | undefined or null |</p>
+<hr>
+<h2 id="syntax-comparison"><a class="header" href="#syntax-comparison">syntax comparison</a></h2>
+<h3 id="syntax-choices"><a class="header" href="#syntax-choices">syntax choices</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>feature</th><th>slop</th><th>rust</th><th>go</th><th>typescript</th><th>javascript</th><th>python</th><th>c++</th><th>haskellel</th></tr>
+</thead>
+<tbody>
+<tr><td>braces</td><td>no, 2-space indent</td><td>no braces, 2-space indent</td><td>braces</td><td>braces</td><td>no braces</td><td>braces, braces, braces</td><td>braces</td><td></td></tr>
+<tr><td>indentation</td><td>2-space strict</td><td>4-space (soft)</td><td>2-space (tabs)</td><td>2-space (soft)</td><td>2-space (tabs)</td><td>4-space (soft)</td><td>2-space (tabs)</td><td>2-space (tabs)</td></tr>
+<tr><td>semicolons</td><td>yes</td><td>yes</td><td>yes</td><td>yes</td><td>yes</td><td>yes</td><td>yes</td><td>yes</td></tr>
+<tr><td>line comments</td><td>#, ##</td><td>//, ///</td><td>#, ///, //</td><td>///</td><td>#, /*</td><td>#</td><td>#, /*</td><td>#</td></tr>
+<tr><td>strings</td><td>“yo”, “world”</td><td>“yo”, “world”</td><td>“yo”, “world”</td><td>“yo”, “world”</td><td>“yo”, “world”</td><td>“yo”, “world”</td><td>“yo”, “world”</td><td>“yo”, “world”</td></tr>
+<tr><td>variables</td><td>lowercase only</td><td>snake_case</td><td>camelcase</td><td>camelcase</td><td>snake_case</td><td>camelcase</td><td>pascalcase</td><td>camelcase</td></tr>
+<tr><td>functions</td><td>fn name() def func() fn name() fn name()</td><td>function name()</td><td>def name()</td><td>function name()</td><td>func name()</td><td>def</td><td>def func name()</td><td></td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="performance-comparison"><a class="header" href="#performance-comparison">performance comparison</a></h2>
+<h3 id="compilation-speed"><a class="header" href="#compilation-speed">compilation speed</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>language</th><th>slop</th><th>rust</th><th>go</th><th>typescript</th><th>go</th><th>python</th><th>haskellel</th></tr>
+</thead>
+<tbody>
+<tr><td>compile time</td><td>n/a</td><td>fast</td><td>moderate</td><td>slow</td><td>fast</td><td>slow</td><td>moderate</td></tr>
+<tr><td>runtime</td><td>fast</td><td>very fast</td><td>fast</td><td>very fast</td><td>moderate</td><td>moderate</td><td>slow</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="memory-overhead"><a class="header" href="#memory-overhead">memory overhead</a></h3>
+<p>| language | slop | rust | go | typescript | javascript | python | c++ | haskellel |
+|———|——|—–|–––––|–––––––|––––|——|———–|
+| runtime size | minimal | moderate | large | moderate | large | moderate | n/a |
+| gc overhead | none | none | none | none | small | large | moderate | n/a |</p>
+<ul>
+<li>rationale | manual control, predictable | no gc pauses | gc adds overhead for low-end hardware | manual control, predictable, suitable for embedded/blockchain | agent-friendly |</li>
+</ul>
+<hr>
+<h2 id="ecosystem-comparison"><a class="header" href="#ecosystem-comparison">ecosystem comparison</a></h2>
+<h3 id="package-managers"><a class="header" href="#package-managers">package managers</a></h3>
+<p>| feature | slop | rust | go | typescript | javascript | python | c++ | haskellel |
+|———|——|—–|–––––|–––––––|––––|——|———–|
+| package format | slop.toml | cargo.toml | package.json | go.mod | package.json | n/a | n/a |
+| dependency source | git repos | git repos | git repos | n/a | n/a | n/a | git repos |
+| versioning | semantic | semantic | semantic | semantic | semantic | semver | semver | npm versioning | n/a | n/a |</p>
+<hr>
+<h2 id="unique-slop-features"><a class="header" href="#unique-slop-features">unique slop features</a></h2>
+<h3 id="what-slop-has-that-others-dont"><a class="header" href="#what-slop-has-that-others-dont">what slop has that others don’t</a></h3>
+<ul>
+<li><strong>agent-first:</strong> all compiler output is jsonl (machine-readable)</li>
+<li><strong>lowercase only:</strong> strict enforcement everywhere</li>
+<li><strong>2-space strict:</strong> no tabs, no mixed indent</li>
+<li><strong>implicit return:</strong> last line is result</li>
+<li><strong>lit functions:</strong> special built-ins without parens (print, log, sleep, yeet)</li>
+<li><strong>! operator:</strong> error handling with reserved e variable</li>
+<li><strong>bunch packing:</strong> compiler enforces optimal layout</li>
+<li><strong>mood sum types:</strong> powerful enums with associated data</li>
+<li><strong>vibe/gives:</strong> clean polymorphism</li>
+<li><strong>strict organization:</strong> enforced file structure order</li>
+<li><strong>no garbage collection:</strong> manual memory with rekt enforcement</li>
+<li><strong>sloppycost:</strong> compile-time cost analysis</li>
+<li><strong>single source of truth:</strong> all docs in one repo</li>
+<li><strong>neovim-only lsp:</strong> focused development effort</li>
+<li><strong>dense versioning:</strong> slow and steady, no rush to v1.0</li>
+</ul>
+<h3 id="why-different"><a class="header" href="#why-different">why different</a></h3>
+<p>not “just another language” - designed with clear purpose:</p>
+<ul>
+<li>agent-first architecture</li>
+<li>sloopy naming for memorability</li>
+<li>consistent indent-only syntax</li>
+<li>explicit error handling</li>
+<li>ownership without complexity</li>
+<li>performance without overhead</li>
+<li>blockchain-ready from epoch 1</li>
+</ul>
+<hr>
+<h2 id="migration-guides"><a class="header" href="#migration-guides">migration guides</a></h2>
+<h3 id="from-rust-to-slop"><a class="header" href="#from-rust-to-slop">from rust to slop</a></h3>
+<p><strong>similarities:</strong></p>
+<ul>
+<li>ownership model</li>
+<li>error handling patterns</li>
+<li>async/await concepts</li>
+</ul>
+<p><strong>differences:</strong></p>
+<ul>
+<li>no lifetimes to learn</li>
+<li>simpler error syntax</li>
+<li>lit functions vs macros</li>
+<li>different standard library</li>
+</ul>
+<h3 id="from-go-to-slop"><a class="header" href="#from-go-to-slop">from go to slop</a></h3>
+<p><strong>similarities:</strong></p>
+<ul>
+<li>async/await concepts</li>
+<li>explicit channel types</li>
+</ul>
+<p><strong>differences:</strong></p>
+<ul>
+<li>no implicit channels (channels are explicit)</li>
+<li>simpler error handling</li>
+<li>no goroutine concept</li>
+<li>no defer (use rekt instead)</li>
+</ul>
+<h3 id="from-python-to-slop"><a class="header" href="#from-python-to-slop">from python to slop</a></h3>
+<p><strong>similarities:</strong></p>
+<ul>
+<li>type hints (optional types explicit)</li>
+<li>list comprehensions</li>
+</ul>
+<p><strong>differences:</strong></p>
+<ul>
+<li>no dynamic typing (all types explicit)</li>
+<li>no classes/object model</li>
+<li>no implicit none</li>
+</ul>
+<hr>
+<h2 id="references"><a class="header" href="#references">references</a></h2>
+<p>slop language specification - see <code>syntax.md</code>, <code>types.md</code>, <code>functions.md</code>
+slop versioning - see <code>versioning.md</code>
+slop changelog - see <code>changelog.md</code></p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="references-1"><a class="header" href="#references-1">references</a></h1>
+<p>slop terminology and design decisions</p>
+<hr>
+<h2 id="terminology-1"><a class="header" href="#terminology-1">terminology</a></h2>
+<h3 id="og-types-2"><a class="header" href="#og-types-2">og types</a></h3>
+<p><strong>definition:</strong> built-in types that come with slop</p>
+<p><strong>og types:</strong></p>
+<ul>
+<li>integers: <code>u64</code></li>
+<li>logic: <code>bool</code></li>
+<li>text: <code>str</code></li>
+</ul>
+<h3 id="chunk"><a class="header" href="#chunk">chunk</a></h3>
+<p><strong>definition:</strong> compilation unit (a <code>.sl</code> file)</p>
+<hr>
+<h2 id="design-decisions"><a class="header" href="#design-decisions">design decisions</a></h2>
+<h3 id="lowercase-everything"><a class="header" href="#lowercase-everything">lowercase everything</a></h3>
+<p><strong>decision:</strong> strict lowercase for all identifiers and keywords.</p>
+<p><strong>rationale:</strong></p>
+<ul>
+<li>eliminates casing ambiguity (camelCase vs snake_case)</li>
+<li>prevents agent hallucinations</li>
+<li>simplifies lexing/parsing</li>
+</ul>
+<h3 id="no-garbage-collection-1"><a class="header" href="#no-garbage-collection-1">no garbage collection</a></h3>
+<p><strong>decision:</strong> strict stack allocation (v0.0.1).</p>
+<p><strong>rationale:</strong></p>
+<ul>
+<li>zero runtime overhead</li>
+<li>deterministic execution</li>
+<li>simple implementation</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-c2a407aa.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+
+    </div>
+    </body>
+</html>

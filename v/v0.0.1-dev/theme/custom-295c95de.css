@@ -1,0 +1,183 @@
+/* authentic opencode theme (nvim) */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+    /* Extracted from ~/.config/nvim/lua/plugins/opencode_theme.lua */
+    --bg: #0a0a0a;
+    --panel: #141414;
+    --element: #1e1e1e;
+    --border: #484848;
+    --text: #eeeeee;
+    --white: #ffffff;
+    --comment: #808080;
+    
+    --primary: #fab283; /* Peach */
+    --accent: #9d7cd8; /* Purple */
+    --red: #e06c75;
+    --orange: #f5a742;
+    --yellow: #e5c07b;
+    --green: #7fd88f;
+    --cyan: #56b6c2;
+    --blue: #5c9cf5;
+
+    /* Semantic Mapping */
+    --bg: var(--element); /* Use Element Gray (#1e1e1e) as main BG */
+    --fg: var(--text);
+    --sidebar-bg: var(--panel); /* Use Panel Darker Gray (#141414) for sidebar */
+    --sidebar-fg: var(--comment);
+    --link: var(--blue);
+    --code-bg: #111; /* Keep code darker than bg for contrast */
+    --sidebar-width: 300px;
+}
+
+/* Force Monospace Everywhere */
+body, 
+.markdown-section, 
+.sidebar, 
+.chapter li a, 
+h1, h2, h3, h4, h5, h6,
+input, button {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace !important;
+}
+
+/* Lowercase Aesthetic */
+body {
+    text-transform: lowercase;
+    background-color: var(--bg);
+    color: var(--fg);
+    font-size: 14px;
+    font-weight: 400;
+}
+
+/* Headers - Match Nvim Title (Peach) */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary);
+    font-weight: 500;
+    margin-top: 1.5em;
+}
+
+h1 { font-size: 1.8em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.2em; }
+
+/* Links - Match Nvim Blue */
+a {
+    color: var(--link);
+    text-decoration: none;
+    border-bottom: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: var(--accent); /* Purple hover */
+    text-decoration: underline;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--bg); /* minimal separation */
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth Slide Animation */
+}
+
+/* Animate Sidebar Toggle (mdBook toggles 'sidebar-hidden' class on body) */
+.sidebar-hidden .sidebar {
+    transform: translateX(calc(0px - var(--sidebar-width)));
+}
+
+.sidebar-visible .sidebar {
+    transform: translateX(0);
+}
+
+.sidebar-scrollbox {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) var(--sidebar-bg);
+}
+
+/* Topic Headers (Section titles like "0x01 basics") */
+.chapter li.chapter-item {
+    margin-top: 1em;
+}
+
+.chapter .spacer {
+    color: var(--primary); /* Peach for section headers */
+    font-weight: 700;
+    font-size: 1.1em;
+}
+
+/* Subtopics (Chapter links) - indent by 2 spaces */
+.chapter li a {
+    color: var(--cyan); /* Cyan for subtopics */
+    transition: all 0.2s ease; /* Smooth hover */
+    padding-left: 2ch; /* 2 character spaces indent */
+    display: block;
+}
+
+/* ... */
+
+/* UI Elements */
+.menu-bar {
+    border-bottom: 1px solid var(--border);
+    background-color: var(--bg);
+    transition: background-color 0.3s;
+}
+
+.icons button {
+    transition: transform 0.2s, color 0.2s;
+}
+
+.icons button:hover {
+    transform: scale(1.1); /* Pop effect */
+    color: var(--accent);
+    background: transparent;
+}
+
+.chapter li a:hover, .chapter li a.active {
+    color: var(--white) !important;
+    background-color: var(--element) !important;
+}
+
+/* Code Blocks */
+pre, code {
+    background-color: var(--code-bg) !important;
+    border: 1px solid var(--border);
+    border-radius: 4px !important;
+    color: var(--text);
+    text-transform: none !important; /* Preserve case */
+}
+
+/* Syntax Highlighting overrides (Manual approximation for mdBook) */
+.hljs-keyword { color: var(--accent); } /* Purple */
+.hljs-string { color: var(--green); } /* Green */
+.hljs-number { color: var(--orange); } /* Orange */
+.hljs-comment { color: var(--comment); font-style: italic; }
+.hljs-title, .hljs-function { color: var(--primary); } /* Peach */
+
+/* UI Elements */
+.menu-bar {
+    border-bottom: 1px solid var(--border);
+    background-color: var(--bg);
+}
+
+.theme-popup, .search-icon, #searchresults-outer {
+    border-radius: 2px !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5) !important;
+    border: 1px solid var(--border);
+    background-color: var(--panel);
+}
+
+/* Search Input */
+#searchbar {
+    background-color: var(--element) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 2px;
+    color: var(--text) !important;
+}
+
+/* Mobile nav */
+@media only screen and (max-width: 1000px) {
+    .sidebar {
+        background-color: var(--bg);
+        border-right: 1px solid var(--border);
+    }
+}

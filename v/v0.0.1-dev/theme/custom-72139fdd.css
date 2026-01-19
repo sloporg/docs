@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+    /* Colors */
+    --bg: #0a0a0a;
+    --panel: #141414;
+    --element: #1e1e1e;
+    --border: #484848;
+    --text: #eeeeee;
+    --white: #ffffff;
+    --comment: #808080;
+    
+    --primary: #fab283;
+    --accent: #9d7cd8;
+    --red: #e06c75;
+    --orange: #f5a742;
+    --yellow: #e5c07b;
+    --green: #7fd88f;
+    --cyan: #56b6c2;
+    --blue: #5c9cf5;
+
+    /* Semantic Mapping */
+    --bg: var(--element);
+    --fg: var(--text);
+    --sidebar-bg: var(--panel);
+    --sidebar-fg: var(--comment);
+    --link: var(--blue);
+    --code-bg: #111;
+    --sidebar-width: 300px;
+}
+
+/* Force Monospace Everywhere */
+body, 
+.markdown-section, 
+.sidebar, 
+.chapter li a, 
+h1, h2, h3, h4, h5, h6,
+input, button {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace !important;
+}
+
+/* Lowercase Aesthetic */
+body {
+    text-transform: lowercase;
+    background-color: var(--bg);
+    color: var(--fg);
+    font-size: 14px;
+    font-weight: 300;
+}
+
+/* Headers */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary);
+    font-weight: 400;
+    margin-top: 1.5em;
+}
+
+h1 { font-size: 1.8em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.2em; }
+
+/* Links */
+a {
+    color: var(--link);
+    text-decoration: none;
+    border-bottom: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--bg);
+}
+
+.sidebar-hidden .sidebar {
+    transform: translateX(calc(0px - var(--sidebar-width)));
+}
+
+.sidebar-visible .sidebar {
+    transform: translateX(0);
+}
+
+.sidebar-scrollbox {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) var(--sidebar-bg);
+}
+
+/* Topic Headers */
+.chapter li.chapter-item {
+    margin-top: 1em;
+}
+
+.chapter .spacer {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 1.1em;
+}
+
+/* Subtopics */
+.chapter li a {
+    color: var(--cyan);
+    transition: all 0.2s ease;
+    padding-left: 2ch;
+    display: block;
+}
+
+.chapter li a:hover, .chapter li a.active {
+    color: var(--white) !important;
+    background-color: var(--element) !important;
+}
+
+/* Code Blocks */
+pre, code {
+    background-color: var(--code-bg) !important;
+    border: 1px solid var(--border);
+    border-radius: 4px !important;
+    color: var(--text);
+    text-transform: none !important;
+}
+
+/* Syntax Highlighting */
+.hljs-keyword { color: var(--accent); }
+.hljs-string { color: var(--green); }
+.hljs-number { color: var(--orange); }
+.hljs-comment { color: var(--comment); font-style: italic; }
+.hljs-title, .hljs-function { color: var(--primary); }
+
+/* Sidebar Toggles */
+.sidebar .chapter .toggle {
+    color: var(--comment);
+    transition: color 0.2s, transform 0.2s;
+    cursor: pointer;
+}
+
+.sidebar .chapter .toggle:hover {
+    color: var(--accent);
+}
+
+/* Rotate when expanded */
+.sidebar .chapter .expanded > .toggle {
+    transform: rotate(90deg);
+}
+
+/* UI Elements */
+.menu-bar {
+    border-bottom: 1px solid var(--border);
+    background-color: var(--bg);
+}
+
+#theme-toggle {
+    display: none !important;
+}
+
+.icons button {
+    transition: color 0.2s;
+}
+
+.icons button:hover {
+    color: var(--accent);
+    background: transparent;
+}
+
+.theme-popup, .search-icon, #searchresults-outer {
+    border-radius: 2px !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5) !important;
+    border: 1px solid var(--border);
+    background-color: var(--panel);
+}
+
+/* Search Input */
+#searchbar {
+    background-color: var(--element) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 2px;
+    color: var(--text) !important;
+}
+
+/* Mobile nav */
+@media only screen and (max-width: 1000px) {
+    .sidebar {
+        background-color: var(--bg);
+        border-right: 1px solid var(--border);
+    }
+}

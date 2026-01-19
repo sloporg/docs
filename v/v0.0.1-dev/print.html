@@ -37,10 +37,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-68d46f7c.js";
+            window.path_to_searchindex_js = "searchindex-6bce0cbf.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-a5cfa9c5.js"></script>
+        <script src="toc-996d0811.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -319,7 +319,7 @@ user = "anon"
 
 # invalid (compile error)
 userName = "anon"                # uppercase letter
-user_name = "anon"               # underscore
+user_name = "anon"               # underscore not allowed
 </code></pre>
 <hr>
 <h2 id="basic-types"><a class="header" href="#basic-types">basic types</a></h2>
@@ -559,18 +559,19 @@ print b                          # valid
 <hr>
 <h2 id="naming"><a class="header" href="#naming">naming</a></h2>
 <h3 id="variables"><a class="header" href="#variables">variables</a></h3>
-<p>lowercase only. snake_case permitted.</p>
+<p>lowercase only. no underscores.</p>
 <ul>
-<li><code>count</code> (preferred)</li>
-<li><code>user_name</code> (accepted)</li>
+<li><code>count</code> (valid)</li>
+<li><code>username</code> (valid)</li>
+<li><code>user_name</code> (compiler error)</li>
 <li><code>userName</code> (compiler error)</li>
-<li><code>UserName</code> (compiler error)</li>
 </ul>
 <h3 id="functions-3"><a class="header" href="#functions-3">functions</a></h3>
-<p>lowercase. avoid underscores if possible.</p>
+<p>lowercase only. no underscores.</p>
 <ul>
-<li><code>calculate</code> (preferred)</li>
-<li><code>readfile</code> (better than <code>read_file</code>)</li>
+<li><code>calculate</code> (valid)</li>
+<li><code>readfile</code> (valid)</li>
+<li><code>read_file</code> (compiler error)</li>
 </ul>
 <h3 id="files"><a class="header" href="#files">files</a></h3>
 <p>lowercase. always <code>.sl</code>.</p>
@@ -584,7 +585,7 @@ print b                          # valid
 <ul>
 <li>identifiers: <code>username</code> not <code>userName</code></li>
 <li>acronyms: <code>httpserver</code> not <code>HTTPServer</code></li>
-<li>constants: <code>max_size</code> not <code>MAX_SIZE</code></li>
+<li>constants: <code>maxsize</code> not <code>MAX_SIZE</code></li>
 </ul>
 <p><strong>why?</strong>
 removes ambiguity and enforces consistency across the ecosystem.</p>
@@ -680,7 +681,7 @@ use at your own risk. if it breaks, that’s on you.</p>
 </ul>
 <hr>
 <h2 id="backward-compatibility"><a class="header" href="#backward-compatibility">backward compatibility</a></h2>
-<p><strong>before 1.0:</strong> we break things if they suck.
+<p><strong>before 1.0:</strong> we break things if they are inferior.
 <strong>after 1.0:</strong> stability guaranteed.</p>
 <hr>
 <h2 id="current-status"><a class="header" href="#current-status">current status</a></h2>

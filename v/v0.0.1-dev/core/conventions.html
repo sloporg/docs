@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>0x0203 conventions - slop docs</title>
+        <title>0x0201 conventions - slop docs</title>
 
 
         <!-- Custom HTML head -->
@@ -36,10 +36,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-68d46f7c.js";
+            window.path_to_searchindex_js = "../searchindex-6bce0cbf.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-a5cfa9c5.js"></script>
+        <script src="../toc-996d0811.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -183,18 +183,19 @@
 <hr>
 <h2 id="naming"><a class="header" href="#naming">naming</a></h2>
 <h3 id="variables"><a class="header" href="#variables">variables</a></h3>
-<p>lowercase only. snake_case permitted.</p>
+<p>lowercase only. no underscores.</p>
 <ul>
-<li><code>count</code> (preferred)</li>
-<li><code>user_name</code> (accepted)</li>
+<li><code>count</code> (valid)</li>
+<li><code>username</code> (valid)</li>
+<li><code>user_name</code> (compiler error)</li>
 <li><code>userName</code> (compiler error)</li>
-<li><code>UserName</code> (compiler error)</li>
 </ul>
 <h3 id="functions"><a class="header" href="#functions">functions</a></h3>
-<p>lowercase. avoid underscores if possible.</p>
+<p>lowercase only. no underscores.</p>
 <ul>
-<li><code>calculate</code> (preferred)</li>
-<li><code>readfile</code> (better than <code>read_file</code>)</li>
+<li><code>calculate</code> (valid)</li>
+<li><code>readfile</code> (valid)</li>
+<li><code>read_file</code> (compiler error)</li>
 </ul>
 <h3 id="files"><a class="header" href="#files">files</a></h3>
 <p>lowercase. always <code>.sl</code>.</p>
@@ -208,7 +209,7 @@
 <ul>
 <li>identifiers: <code>username</code> not <code>userName</code></li>
 <li>acronyms: <code>httpserver</code> not <code>HTTPServer</code></li>
-<li>constants: <code>max_size</code> not <code>MAX_SIZE</code></li>
+<li>constants: <code>maxsize</code> not <code>MAX_SIZE</code></li>
 </ul>
 <p><strong>why?</strong>
 removes ambiguity and enforces consistency across the ecosystem.</p>

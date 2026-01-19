@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-6bce0cbf.js";
+            window.path_to_searchindex_js = "searchindex-bde877d9.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-996d0811.js"></script>
@@ -276,16 +276,20 @@ fn main()
 <hr>
 <p><strong>epoch 1 (v0.0.1)</strong> - stack-only foundation</p>
 <p>inspired by: rust (ownership), zig (simplicity), go (methods), python (indent)</p>
+<hr>
+<h2 id="roadmap"><a class="header" href="#roadmap">roadmap</a></h2>
+<p><strong>v0.0.1 (now)</strong> - bootstrap compiler (<code>sloprsc</code>) written in rust. relies on llvm for code generation.
+<strong>future</strong> - self-hosting compiler (<code>slopc</code>) written in slop. no llvm dependency. pure slop.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="quickstart"><a class="header" href="#quickstart">quickstart</a></h1>
 <p>your first slop program</p>
 <hr>
 <h2 id="installation"><a class="header" href="#installation">installation</a></h2>
-<pre><code class="language-bash"># download compiler (coming soon)
-curl -l https://github.com/sloporg/sloprsc/releases/latest/download/slopc-darwin-arm64 -o slopc
+<pre><code class="language-bash"># download bootstrap compiler (sloprsc)
+curl -l https://github.com/sloporg/sloprsc/releases/latest/download/sloprsc-darwin-arm64 -o slopc
 chmod +x slopc
 
-# or build from source
+# or build from source (requires rust &amp; llvm)
 git clone https://github.com/sloporg/sloprsc
 cd sloprsc
 cargo build --release
@@ -686,7 +690,7 @@ use at your own risk. if it breaks, that’s on you.</p>
 <hr>
 <h2 id="current-status"><a class="header" href="#current-status">current status</a></h2>
 <p><strong>version:</strong> 0.0.1
-<strong>status:</strong> compiler cooking.</p>
+<strong>status:</strong> bootstrap compiler (rust/llvm) in progress. self-hosting planned for future epoch.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="changelog"><a class="header" href="#changelog">changelog</a></h1>
 <p><strong>history of slop.</strong></p>

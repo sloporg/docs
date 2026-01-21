@@ -34,7 +34,7 @@ jobs:
           publish_dir: ./book
           publish_branch: gh-pages
           destination_dir: v/v0.0.1-dev
-          keep_files: true
+          keep_files: false
 
       - name: deploy root redirect
         uses: peaceiris/actions-gh-pages@v3
